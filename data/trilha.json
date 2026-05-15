@@ -1,0 +1,876 @@
+{
+  "titulo": "Trilha de Estudos - Qualidade de Software",
+  "topicos": [
+    {
+      "id": "qa-area",
+      "ordem": 1,
+      "titulo": "O que é a área de qualidade de software?",
+      "contexto": "Qualidade de Software",
+      "atividades": [],
+      "teoria": {
+        "titulo": "O que é a área de qualidade de software?",
+        "secoes": [
+          {
+            "titulo": "Definição e papel do QA",
+            "paragrafos": [
+              "Qualidade de software é o conjunto de atividades, processos e práticas adotados para garantir que um produto de software atenda aos requisitos definidos e às expectativas dos seus usuários. Não se resume a encontrar bugs — envolve prevenir defeitos, avaliar riscos e garantir que o produto seja confiável, usável e seguro.",
+              "O profissional de QA (Quality Assurance) atua em todo o ciclo de desenvolvimento: participa do refinamento de requisitos, define critérios de aceite, cria estratégias de teste, executa testes e analisa resultados. É um papel de garantia de processo e produto, não apenas de verificação final.",
+              "É importante distinguir QA de QC: QA (Quality Assurance) é proativo — foca em melhorar processos para evitar defeitos. QC (Quality Control) é reativo — foca em identificar defeitos no produto já desenvolvido. Testes fazem parte do QC, mas uma estratégia de qualidade madura integra os dois."
+            ]
+          },
+          {
+            "titulo": "Exemplo e Aplicação",
+            "paragrafos": [
+              "Em um time ágil trabalhando com sprints de 2 semanas, o QA participa desde o início: durante o planejamento, questiona ambiguidades nos requisitos ('E se o usuário deixar o campo vazio?'). Durante o desenvolvimento, alinha com o dev os critérios de aceite. Ao final, executa os testes e garante que as histórias estejam realmente prontas para ir à produção.",
+              "Sem QA no processo: o time descobre na produção que o campo de CPF aceita letras, causando falhas em relatórios fiscais. Com QA desde o início: o critério de aceite já previa a validação do formato, o dev implementou a máscara e o teste confirmou o comportamento antes do deploy."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "qa-insights",
+      "ordem": 2,
+      "titulo": "Insights de qualidade",
+      "contexto": "Qualidade de Software",
+      "atividades": [],
+      "teoria": {
+        "titulo": "Insights de qualidade: mitos sobre testes e qualidade",
+        "secoes": [
+          {
+            "titulo": "Mitos comuns sobre qualidade",
+            "paragrafos": [
+              "Mito 1 — 'Testar é custo, não investimento': Na realidade, o custo de corrigir um bug em produção é de 10 a 100 vezes maior do que corrigi-lo durante o desenvolvimento. Testar cedo é economizar depois.",
+              "Mito 2 — 'Testes garantem software sem bugs': Testes reduzem riscos e aumentam a confiança, mas não garantem perfeição. Um conjunto de testes cobre cenários conhecidos; bugs surgem em combinações e contextos imprevistos.",
+              "Mito 3 — 'QA só entra no final do projeto': Quando o QA só valida o produto pronto, os defeitos já estão enraizados e caros de corrigir. A tendência atual é o shift-left: trazer qualidade para o início do processo.",
+              "Mito 4 — 'Automação resolve tudo': Automação é uma ferramenta poderosa, mas não substitui o pensamento crítico humano. Testes exploratórios, de usabilidade e análise de risco ainda dependem de julgamento humano.",
+              "Mito 5 — 'Mais testes = mais qualidade': Quantidade não é qualidade. Um conjunto enxuto e bem pensado de testes com boa cobertura de risco é mais valioso do que centenas de testes redundantes que consomem tempo e não revelam nada novo."
+            ]
+          },
+          {
+            "titulo": "Exemplo e Aplicação",
+            "paragrafos": [
+              "Situação real: uma startup decidiu não testar a funcionalidade de pagamento para 'economizar tempo'. O sistema foi ao ar e, no primeiro dia, 23% das transações falhavam silenciosamente — sem retorno ao usuário. O custo de rollback, comunicação de crise e retrabalho foi 8 vezes maior do que o tempo que seria gasto nos testes.",
+              "Reflexão prática: antes de pular testes, pergunte 'qual é o custo se isso falhar em produção?' Se a resposta for alta, o risco justifica o investimento em qualidade."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "qa-processos",
+      "ordem": 3,
+      "titulo": "Processos e boas práticas",
+      "contexto": "Qualidade de Software",
+      "atividades": [],
+      "teoria": {
+        "titulo": "Processos e boas práticas em qualidade de software",
+        "secoes": [
+          {
+            "titulo": "Boas práticas do processo de qualidade",
+            "paragrafos": [
+              "Shift-left testing: antecipar a atividade de teste para as fases iniciais do desenvolvimento. Em vez de testar só após o código pronto, envolve QA no refinamento de requisitos, na revisão de design e na definição de critérios de aceite. Reduz drasticamente o custo de correção de defeitos.",
+              "Definition of Done (DoD): acordo formal do time sobre o que significa 'pronto'. Um DoD com critérios de qualidade pode incluir: testes unitários passando, cobertura de código acima de X%, critérios de aceite validados, sem bugs críticos abertos. Evita que trabalho 'quase pronto' entre na produção.",
+              "Plano de testes: documento que descreve o escopo, abordagem, recursos e cronograma das atividades de teste. Não precisa ser um documento pesado — em times ágeis, pode ser um card ou uma seção da história. O importante é ter clareza sobre o que será testado, como e por quem.",
+              "Gerenciamento de defeitos: processo sistemático de registrar, priorizar e acompanhar bugs. Envolve campos como: título claro, passos para reproduzir, comportamento esperado vs. observado, severidade e prioridade. Uma boa gestão de defeitos garante rastreabilidade e evita que problemas sejam esquecidos.",
+              "Rastreabilidade de requisitos: capacidade de mapear cada requisito até os casos de teste que o validam. Garante que nada foi esquecido de testar e facilita a análise de impacto quando um requisito muda."
+            ]
+          },
+          {
+            "titulo": "Exemplo e Aplicação",
+            "paragrafos": [
+              "Um time define no DoD da sprint: 'Todos os critérios de aceite cobertos por testes automatizados; zero bugs de severidade alta abertos; PR aprovado por outro dev e pelo QA.' Resultado: histórias não passam de sprint para sprint incompletas, e a definição de 'pronto' é compartilhada por todos.",
+              "Para o gerenciamento de defeitos, um bug bem descrito seria: 'Ao realizar login com senha contendo caracteres especiais (#, @, !), o sistema retorna erro 500 em vez de autenticar o usuário. Reproduzível em 100% das tentativas. Severidade: Alta. Passos: 1) Acessar /login, 2) Inserir email válido, 3) Inserir senha com @, 4) Clicar em Entrar.'"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "piramide-testes",
+      "ordem": 4,
+      "titulo": "Pirâmide de Testes",
+      "contexto": "Níveis/Camadas de Teste",
+      "atividades": [],
+      "teoria": {
+        "titulo": "Pirâmide de Testes",
+        "secoes": [
+          {
+            "titulo": "O conceito da pirâmide",
+            "paragrafos": [
+              "A pirâmide de testes, popularizada por Mike Cohn, é um modelo visual que orienta como distribuir os diferentes tipos de teste em uma estratégia de qualidade. A ideia central é simples: quanto mais próximo da base, mais testes você deve ter; quanto mais perto do topo, menos — pois ficam mais caros, lentos e frágeis.",
+              "Base — Testes Unitários: são rápidos, baratos e muito específicos. Testam unidades isoladas de código (funções, métodos, classes). Devem compor a maior parte da suíte de testes. Feedback imediato para o desenvolvedor.",
+              "Meio — Testes de Integração / Serviço: verificam se dois ou mais componentes funcionam corretamente juntos. Mais lentos que unitários, mas ainda gerenciáveis. Incluem testes de API, de banco de dados e de integração entre serviços.",
+              "Topo — Testes de Interface / E2E: simulam o comportamento real do usuário, do início ao fim de um fluxo. São os mais lentos, os mais caros de manter e os mais sujeitos a falhas por mudanças na interface. Devem cobrir apenas os fluxos críticos do negócio.",
+              "Antipadrão — Pirâmide invertida (sorvete): quando a maioria dos testes é E2E e poucos são unitários, o resultado é uma suíte lenta, frágil e cara. Builds demoram horas e qualquer mudança na UI quebra dezenas de testes."
+            ]
+          },
+          {
+            "titulo": "Exemplo e Aplicação",
+            "paragrafos": [
+              "Um e-commerce saudável pode ter: 500 testes unitários (rodam em 30 segundos), 80 testes de integração de API (rodam em 3 minutos) e 15 testes E2E cobrindo os fluxos críticos: login, busca, carrinho e checkout (rodam em 10 minutos). Total: feedback completo em menos de 15 minutos.",
+              "Comparação: se os mesmos 595 cenários fossem todos E2E, o tempo seria de horas — inviável para CI/CD rápido. A pirâmide traz equilíbrio entre confiança e velocidade de feedback."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "nivel-unitario",
+      "ordem": 5,
+      "titulo": "Teste Unitário",
+      "contexto": "Níveis/Camadas de Teste",
+      "atividades": [],
+      "teoria": {
+        "titulo": "Teste Unitário — nível da pirâmide",
+        "secoes": [
+          {
+            "titulo": "O que é e como funciona",
+            "paragrafos": [
+              "O teste unitário está na base da pirâmide. Ele valida uma única unidade de código — tipicamente uma função, um método ou uma classe — de forma completamente isolada das suas dependências externas. Dependências como banco de dados, APIs externas ou serviços são substituídas por doubles de teste (mocks, stubs, fakes).",
+              "Características: extremamente rápidos (milissegundos), determinísticos (mesmo resultado a cada execução), independentes entre si (ordem não importa), escritos pelo próprio desenvolvedor durante ou após o desenvolvimento.",
+              "Princípio F.I.R.S.T.: Fast (rápido), Independent (independente), Repeatable (repetível em qualquer ambiente), Self-validating (passa/falha sem intervenção manual), Timely (escrito junto com o código de produção).",
+              "Frameworks populares: JUnit/TestNG (Java), pytest (Python), Jest/Vitest (JavaScript/TypeScript), NUnit/xUnit (C#), RSpec (Ruby)."
+            ]
+          },
+          {
+            "titulo": "Exemplo e Aplicação",
+            "paragrafos": [
+              "Função a ser testada: calcularDesconto(preco, percentual) que retorna o preço com desconto aplicado.",
+              "Testes unitários para essa função: (1) preço 100 com 10% de desconto deve retornar 90; (2) desconto de 0% não altera o preço; (3) desconto de 100% retorna 0; (4) preço negativo deve lançar exceção; (5) percentual acima de 100 deve lançar exceção. Cada caso é independente e roda em menos de 1ms — sem banco, sem rede, sem dependências externas."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "nivel-integracao",
+      "ordem": 6,
+      "titulo": "Teste de Integração",
+      "contexto": "Níveis/Camadas de Teste",
+      "atividades": [],
+      "teoria": {
+        "titulo": "Teste de Integração — nível da pirâmide",
+        "secoes": [
+          {
+            "titulo": "O que é e como funciona",
+            "paragrafos": [
+              "O teste de integração ocupa a camada intermediária da pirâmide. Verifica se dois ou mais componentes, módulos ou serviços funcionam corretamente quando integrados. Diferente do unitário, aqui as dependências reais (ou próximas do real) são usadas.",
+              "Exemplos de integrações testadas: serviço + banco de dados (repositório salva e recupera dados corretamente?), serviço A + serviço B via HTTP (a chamada entre microsserviços funciona?), aplicação + sistema de cache (o cache é invalidado quando os dados mudam?).",
+              "São mais lentos que unitários porque envolvem infraestrutura real. Ferramentas como Testcontainers (containers Docker sob demanda para testes) tornaram os testes de integração mais práticos e confiáveis — sobe um banco real só para o teste e derruba depois.",
+              "Foco: verificar que os contratos entre componentes são respeitados e que a integração não introduz comportamentos inesperados."
+            ]
+          },
+          {
+            "titulo": "Exemplo e Aplicação",
+            "paragrafos": [
+              "Cenário: o serviço de pedidos deve salvar um novo pedido no banco e retornar o ID gerado. O teste de integração: (1) sobe um banco PostgreSQL real via Testcontainers, (2) cria as tabelas necessárias, (3) chama o método pedidoRepository.salvar(novoPedido), (4) consulta o banco diretamente e verifica que o registro foi persistido com os dados corretos, (5) destrói o container ao final.",
+              "Esse teste detecta problemas reais que testes unitários não veem: erros de mapeamento de campos, problemas de transação, restrições de chave estrangeira, etc."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "nivel-componente",
+      "ordem": 7,
+      "titulo": "Teste de Componentes",
+      "contexto": "Níveis/Camadas de Teste",
+      "atividades": [],
+      "teoria": {
+        "titulo": "Teste de Componentes — nível da pirâmide",
+        "secoes": [
+          {
+            "titulo": "O que é e como funciona",
+            "paragrafos": [
+              "O teste de componente valida um componente completo — como um microsserviço inteiro — de forma isolada. As dependências externas (outros serviços, APIs de terceiros) são mockadas, mas a lógica interna do componente é exercitada de ponta a ponta internamente.",
+              "Diferença do unitário: testa o componente como um todo (todos os seus módulos internos integrados), não uma unidade isolada. Diferença do E2E: não depende de outros serviços reais sendo executados.",
+              "Técnica comum: usar um banco de dados em memória (H2, SQLite) ou Testcontainers para infraestrutura, e mocks de contratos (WireMock, MockServer) para simular respostas de APIs externas.",
+              "Ideal para microsserviços: cada serviço pode ser testado de forma independente, verificando que suas APIs internas funcionam corretamente antes de integrar com outros serviços."
+            ]
+          },
+          {
+            "titulo": "Exemplo e Aplicação",
+            "paragrafos": [
+              "Microsserviço de autenticação: o teste de componente sobe apenas esse serviço com banco em memória, e usa WireMock para simular o serviço de usuários externo. Então chama o endpoint POST /auth/login com credenciais válidas e verifica que retorna um token JWT válido — sem precisar que o serviço de usuários real esteja rodando.",
+              "Benefício: detecta bugs de lógica interna do serviço, problemas de serialização/desserialização de payloads e comportamento dos endpoints — tudo antes de qualquer integração real com outros sistemas."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "nivel-e2e",
+      "ordem": 8,
+      "titulo": "Testes E2E",
+      "contexto": "Níveis/Camadas de Teste",
+      "atividades": [],
+      "teoria": {
+        "titulo": "Testes E2E — nível da pirâmide",
+        "secoes": [
+          {
+            "titulo": "O que é e como funciona",
+            "paragrafos": [
+              "Os testes End-to-End (E2E) estão no topo da pirâmide. Simulam o comportamento real de um usuário, navegando pela interface ou chamando o sistema de ponta a ponta — desde a entrada até a saída, passando por todos os componentes: frontend, backend, banco de dados, integrações.",
+              "São os mais fiéis à realidade de uso: testam o sistema como um todo, como o usuário realmente o utiliza. Por isso, são os mais confiáveis em termos de validação de valor de negócio. Mas também são os mais lentos, mais frágeis (qualquer mudança na UI pode quebrar) e os mais caros de manter.",
+              "Ferramentas: Cypress, Playwright, Selenium, Puppeteer para testes de interface web; Postman/Newman ou RestAssured para fluxos E2E de API.",
+              "Estratégia: use E2E para cobrir apenas os fluxos críticos de negócio — o caminho feliz dos processos mais importantes. Não duplique cobertura que testes mais baixos já garantem."
+            ]
+          },
+          {
+            "titulo": "Exemplo e Aplicação",
+            "paragrafos": [
+              "Fluxo E2E crítico de um e-commerce: (1) usuário acessa o site, (2) pesquisa por 'tênis running', (3) seleciona um produto, (4) adiciona ao carrinho, (5) insere dados de entrega, (6) realiza pagamento com cartão teste, (7) verifica a página de confirmação com número do pedido.",
+              "Esse único teste E2E valida que toda a stack — frontend, gateway de API, serviço de catálogo, serviço de carrinho, serviço de pagamento e banco — funcionam integrados para o fluxo mais crítico do negócio."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "nivel-exploratorio",
+      "ordem": 9,
+      "titulo": "Teste Exploratório",
+      "contexto": "Níveis/Camadas de Teste",
+      "atividades": [],
+      "teoria": {
+        "titulo": "Teste Exploratório — complemento da pirâmide",
+        "secoes": [
+          {
+            "titulo": "O que é e como funciona",
+            "paragrafos": [
+              "O teste exploratório não é uma camada da pirâmide clássica, mas um complemento essencial. Nele, o testador aprende sobre o sistema, planeja os testes e os executa simultaneamente — de forma não-roteirizada e baseada em curiosidade e experiência.",
+              "Não significa testar aleatoriamente: o teste exploratório é sistemático e intencional, mas adaptável. O testador usa seu conhecimento do domínio, heurísticas (regras de bolso para encontrar bugs) e intuição para explorar áreas de risco.",
+              "Técnicas: session-based testing (sessões com objetivo definido e duração limitada), charters de teste (enunciados como 'explorar o módulo de pagamento com foco em valores de borda'), heurísticas SFDPOT (Structure, Function, Data, Platform, Operations, Time).",
+              "Quando usar: após os testes automatizados passarem, para cobrir cenários imprevistos; ao testar uma funcionalidade nova sem requisitos claros; para descobrir bugs que scripts fixos nunca encontrariam."
+            ]
+          },
+          {
+            "titulo": "Exemplo e Aplicação",
+            "paragrafos": [
+              "Charter de exploração: 'Explorar o formulário de cadastro por 45 minutos, com foco em comportamento inesperado de campos de texto (caracteres especiais, emojis, textos muito longos, HTML injetado, SQL injection básico).'",
+              "Durante a sessão, o QA descobre que o campo 'nome' aceita scripts JavaScript como <script>alert('XSS')</script>, que são exibidos sem escape na tela de perfil do usuário — um bug crítico de segurança que nenhum teste automatizado havia previsto."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "tipo-unidade",
+      "ordem": 10,
+      "titulo": "Teste de Unidade",
+      "contexto": "Tipos de Teste",
+      "atividades": [],
+      "teoria": {
+        "titulo": "Teste de Unidade",
+        "secoes": [
+          {
+            "titulo": "Definição e características",
+            "paragrafos": [
+              "O teste de unidade (unit test) valida o menor pedaço testável de um sistema — geralmente uma função, método ou classe — de forma isolada. Toda dependência externa é substituída por um double de teste (mock, stub ou fake).",
+              "Objetivo: verificar que a lógica de negócio de uma unidade está correta, independentemente do contexto externo. O desenvolvedor escreve testes de unidade enquanto implementa o código (TDD — Test-Driven Development — é uma prática que formaliza isso).",
+              "Padrão AAA: os testes de unidade seguem o padrão Arrange (preparar dados e dependências), Act (executar a ação) e Assert (verificar o resultado). Garante legibilidade e clareza sobre o que está sendo testado.",
+              "Benefícios: feedback imediato (roda em millisegundos), documentação viva do comportamento esperado, facilita refatoração segura (se os testes continuam passando, o comportamento foi preservado)."
+            ]
+          },
+          {
+            "titulo": "Exemplo e Aplicação",
+            "paragrafos": [
+              "Testando uma função de validação de CPF em Python com pytest:",
+              "def test_cpf_valido_retorna_true(): assert validar_cpf('529.982.247-25') == True\ndef test_cpf_invalido_retorna_false(): assert validar_cpf('111.111.111-11') == False\ndef test_cpf_vazio_lanca_excecao(): with pytest.raises(ValueError): validar_cpf('')",
+              "Cada teste é independente, roda em menos de 1ms e documenta exatamente o comportamento esperado da função."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "tipo-integracao",
+      "ordem": 11,
+      "titulo": "Teste de Integração",
+      "contexto": "Tipos de Teste",
+      "atividades": [],
+      "teoria": {
+        "titulo": "Teste de Integração",
+        "secoes": [
+          {
+            "titulo": "Definição e características",
+            "paragrafos": [
+              "O teste de integração verifica se dois ou mais módulos, componentes ou sistemas funcionam corretamente quando combinados. Enquanto testes unitários isolam cada parte, os testes de integração validam as 'juntas' do sistema.",
+              "Abordagens: Big Bang (integra tudo de uma vez e testa — difícil de isolar falhas), Top-Down (começa pela interface e vai integrando módulos inferiores), Bottom-Up (começa pelos módulos mais internos e vai subindo), Sandwich/Híbrida (combina top-down e bottom-up).",
+              "O que costuma ser testado: integração com banco de dados (queries, transações, mapeamentos ORM), integração entre microsserviços via HTTP/gRPC/mensageria, integração com APIs de terceiros (geralmente via mocks controlados), leitura/escrita em sistemas de cache ou filas.",
+              "Custo: mais lento que unitários por envolver infraestrutura real, mas mais rápido que E2E. Testcontainers é a ferramenta moderna de referência para provisionar infraestrutura real (PostgreSQL, Redis, Kafka) durante os testes."
+            ]
+          },
+          {
+            "titulo": "Exemplo e Aplicação",
+            "paragrafos": [
+              "Cenário de integração entre serviço de pedidos e banco de dados: o teste cria um pedido via a camada de serviço, verifica que foi persistido corretamente no banco (inclusive relacionamentos com itens e endereços), e em seguida consulta o banco diretamente para confirmar a integridade dos dados.",
+              "Esse teste detecta problemas que o unitário não vê: lazy loading não configurado corretamente no ORM, campos com charset errado, restrições de banco não previstas no código."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "tipo-contrato",
+      "ordem": 12,
+      "titulo": "Teste de Contrato",
+      "contexto": "Tipos de Teste",
+      "atividades": [],
+      "teoria": {
+        "titulo": "Teste de Contrato",
+        "secoes": [
+          {
+            "titulo": "Definição e características",
+            "paragrafos": [
+              "O teste de contrato (contract testing) valida que dois serviços que se comunicam — um consumidor e um provedor — concordam sobre a 'interface' entre eles: os campos esperados, os tipos de dados, os códigos de status e os comportamentos.",
+              "Surgiu como resposta ao problema de microsserviços: quando dezenas de serviços se comunicam entre si, um serviço pode mudar sua API e quebrar os consumidores sem perceber. Testes de contrato detectam isso de forma rápida, sem precisar de um ambiente integrado completo.",
+              "Funcionamento com Pact (ferramenta mais popular): o consumidor define as interações esperadas (o que ele envia e o que espera receber) em um arquivo de contrato (pact). O provedor executa os testes usando esse arquivo, verificando que sua implementação satisfaz as expectativas do consumidor.",
+              "Consumer-driven contracts: o consumidor dita o contrato, e o provedor é responsável por cumpri-lo. Isso inverte a dependência: o provedor não pode mudar sua API sem verificar se ainda satisfaz todos os contratos dos consumidores."
+            ]
+          },
+          {
+            "titulo": "Exemplo e Aplicação",
+            "paragrafos": [
+              "O serviço de frontend (consumidor) espera que GET /api/produtos/:id retorne um JSON com os campos: id (número), nome (string), preco (número), disponivel (boolean). O contrato Pact define essa expectativa.",
+              "O serviço de backend (provedor) executa os testes de contrato: verifica que sua implementação real de GET /api/produtos/:id retorna exatamente esses campos com esses tipos. Se o dev do backend renomear 'preco' para 'valor', o teste de contrato falha antes de qualquer deploy — evitando uma quebra em produção."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "tipo-api",
+      "ordem": 13,
+      "titulo": "Teste de API",
+      "contexto": "Tipos de Teste",
+      "atividades": [],
+      "teoria": {
+        "titulo": "Teste de API",
+        "secoes": [
+          {
+            "titulo": "Definição e características",
+            "paragrafos": [
+              "O teste de API (Application Programming Interface) valida diretamente os endpoints de uma API — geralmente REST ou GraphQL — sem passar pela interface do usuário. É mais estável que testes de UI (não depende de seletores CSS ou textos de botões) e mais próximo do comportamento real do sistema.",
+              "O que é validado: código de status HTTP (200, 201, 400, 401, 404, 500...), corpo da resposta (campos presentes, tipos corretos, valores esperados), headers (Content-Type, Authorization, Cache-Control), tempo de resposta, comportamento em diferentes cenários (dados válidos, inválidos, ausentes, limites).",
+              "Ferramentas: Postman/Newman (coleções de testes automatizadas), RestAssured (Java), Requests + pytest (Python), Supertest (Node.js), k6 (para performance em APIs).",
+              "Pirâmide: testes de API pertencem à camada de integração/serviço. São mais rápidos que E2E (não precisam de browser) e mais completos que unitários (testam a API real, não apenas a lógica interna)."
+            ]
+          },
+          {
+            "titulo": "Exemplo e Aplicação",
+            "paragrafos": [
+              "Teste de API para POST /auth/login: cenário de sucesso — enviar email e senha válidos, verificar que retorna 200, que o body contém 'token' (string) e 'expiresIn' (número). Cenário de falha — senha incorreta deve retornar 401 com mensagem de erro específica. Cenário de validação — email com formato inválido deve retornar 400.",
+              "Em Postman: cada cenário vira um request com assertions em JavaScript no aba Tests: pm.response.to.have.status(200); pm.expect(pm.response.json().token).to.be.a('string')."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "tipo-sistema",
+      "ordem": 14,
+      "titulo": "Teste de Sistema",
+      "contexto": "Tipos de Teste",
+      "atividades": [],
+      "teoria": {
+        "titulo": "Teste de Sistema",
+        "secoes": [
+          {
+            "titulo": "Definição e características",
+            "paragrafos": [
+              "O teste de sistema valida o sistema completo — todos os seus componentes integrados — em relação aos requisitos especificados. É executado em um ambiente similar ao de produção, após os testes de integração e antes dos testes de aceitação.",
+              "Escopo: verifica o comportamento funcional e não funcional do sistema como um todo. Funcional: o sistema faz o que deve fazer? Não-funcional: o sistema é seguro, rápido, compatível com diferentes browsers/dispositivos, recuperável após falhas?",
+              "Tipos dentro do teste de sistema: teste funcional, teste de desempenho, teste de segurança, teste de compatibilidade, teste de usabilidade, teste de recuperação.",
+              "Responsabilidade: geralmente executado pela equipe de QA (não pelos desenvolvedores), em ambiente de teste dedicado. O objetivo é validar o produto contra a especificação antes de apresentá-lo ao cliente."
+            ]
+          },
+          {
+            "titulo": "Exemplo e Aplicação",
+            "paragrafos": [
+              "Para um sistema de gestão hospitalar, os testes de sistema incluem: (funcional) o médico consegue registrar uma consulta com todos os campos obrigatórios? O prontuário do paciente é atualizado automaticamente? (não-funcional) o sistema suporta 500 usuários simultâneos? Os dados do paciente são criptografados em repouso e em trânsito?",
+              "Todos esses cenários são validados com o sistema completo em execução — frontend, backend, banco de dados, integrações externas — em ambiente próximo à produção."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "tipo-aceitacao",
+      "ordem": 15,
+      "titulo": "Teste de Aceitação",
+      "contexto": "Tipos de Teste",
+      "atividades": [],
+      "teoria": {
+        "titulo": "Teste de Aceitação",
+        "secoes": [
+          {
+            "titulo": "Definição e características",
+            "paragrafos": [
+              "O teste de aceitação (ou User Acceptance Testing — UAT) é a validação final do produto pelo cliente ou usuário final, verificando se o software atende às suas necessidades e expectativas de negócio antes de ser aprovado para produção.",
+              "Perspectiva: é a única fase de teste conduzida principalmente pela perspectiva do usuário, não da equipe técnica. O foco é 'o sistema faz o que eu preciso?' não 'o sistema faz o que foi especificado?'.",
+              "Tipos: Alpha testing (usuários internos testam antes do lançamento), Beta testing (grupo selecionado de usuários reais testa em ambiente próximo ao de produção), Contract acceptance testing (verifica conformidade com critérios contratuais), Regulation acceptance testing (verifica conformidade com normas e leis).",
+              "BDD (Behavior-Driven Development): uma abordagem moderna em que os critérios de aceite são escritos em linguagem natural (Gherkin: Given/When/Then) antes do desenvolvimento, servindo como base tanto para o código quanto para os testes."
+            ]
+          },
+          {
+            "titulo": "Exemplo e Aplicação",
+            "paragrafos": [
+              "Critério de aceite em Gherkin: 'Dado que sou um cliente com conta ativa, Quando realizo um saque de R$200 com saldo de R$500, Então meu saldo deve ser atualizado para R$300 e devo receber uma notificação por SMS.'",
+              "Esse critério, escrito pelo Product Owner junto com o time, serve como base para o desenvolvimento e é validado pelo usuário final durante o UAT — garantindo que o que foi entregue é realmente o que foi solicitado."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "tipo-e2e",
+      "ordem": 16,
+      "titulo": "Teste E2E",
+      "contexto": "Tipos de Teste",
+      "atividades": [],
+      "teoria": {
+        "titulo": "Teste E2E (End-to-End)",
+        "secoes": [
+          {
+            "titulo": "Definição e características",
+            "paragrafos": [
+              "O teste E2E (End-to-End) valida um fluxo completo do sistema, simulando o comportamento real de um usuário do início ao fim de uma jornada. Diferente dos testes de sistema (que focam em requisitos), o E2E foca em fluxos de usuário — combinações de ações que juntas entregam valor.",
+              "Abrange toda a stack: interface do usuário (web, mobile ou API), backend, banco de dados, integrações com sistemas externos. Nada é mockado — o teste usa o ambiente real ou um ambiente de staging completo.",
+              "Ferramentas mais usadas: Cypress e Playwright para aplicações web (com controle do browser), Appium para mobile, Selenium (mais antigo, mas ainda amplamente usado), RestAssured ou Postman/Newman para fluxos E2E puramente de API.",
+              "Trade-offs: altamente confiável para validar fluxos críticos, mas lento, frágil (mudanças de UI quebram testes) e caro para manter. Por isso, deve ser aplicado cirurgicamente — nos fluxos de maior valor e maior risco."
+            ]
+          },
+          {
+            "titulo": "Exemplo e Aplicação",
+            "paragrafos": [
+              "Teste E2E com Playwright para fluxo de login e compra: o teste abre o browser, navega até a página de login, preenche credenciais, aguarda o redirecionamento para o dashboard, busca por um produto, adiciona ao carrinho, preenche dados de entrega, seleciona forma de pagamento, finaliza a compra e verifica o número do pedido na tela de confirmação.",
+              "Esse teste, que dura cerca de 30 segundos, valida que toda a jornada crítica está funcionando — e é executado automaticamente a cada deploy em staging antes de qualquer release para produção."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "tipo-funcionais",
+      "ordem": 17,
+      "titulo": "Testes Funcionais",
+      "contexto": "Tipos de Teste",
+      "atividades": [],
+      "teoria": {
+        "titulo": "Testes Funcionais",
+        "secoes": [
+          {
+            "titulo": "Definição e características",
+            "paragrafos": [
+              "Os testes funcionais verificam se o sistema faz o que foi especificado — se as funcionalidades atendem aos requisitos funcionais. A pergunta central é: 'o sistema funciona corretamente?'",
+              "Abordagem caixa preta (black-box): o testador não conhece a implementação interna. Testa apenas as entradas e saídas, com base nos requisitos. Isso garante que o teste foque no comportamento visível ao usuário, não na implementação.",
+              "O que é testado: fluxos de navegação, cálculos de negócio, regras de validação, permissões e controle de acesso, integrações com sistemas externos, mensagens de erro e feedback ao usuário.",
+              "Técnicas usadas para desenhar casos de teste funcionais: particionamento de equivalência, análise de valor limite, tabela de decisão (veremos nas Técnicas de Teste)."
+            ]
+          },
+          {
+            "titulo": "Exemplo e Aplicação",
+            "paragrafos": [
+              "Requisito funcional: 'O sistema deve aplicar desconto de 10% em compras acima de R$100 e de 15% em compras acima de R$200.' Casos de teste funcionais: (1) compra de R$50 — sem desconto; (2) compra de R$100 — sem desconto (limite exato); (3) compra de R$101 — desconto de 10%; (4) compra de R$200 — 10%; (5) compra de R$201 — 15%.",
+              "Cada caso valida uma regra de negócio específica sem olhar para o código — apenas para o comportamento esperado pelo usuário."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "tipo-regressao",
+      "ordem": 18,
+      "titulo": "Teste de Regressão",
+      "contexto": "Tipos de Teste",
+      "atividades": [],
+      "teoria": {
+        "titulo": "Teste de Regressão",
+        "secoes": [
+          {
+            "titulo": "Definição e características",
+            "paragrafos": [
+              "O teste de regressão verifica que mudanças recentes no código (novas funcionalidades, correções de bugs, refatorações) não quebraram funcionalidades que já estavam funcionando. Em outras palavras: garante que o sistema não 'regrediu'.",
+              "Contexto: toda vez que o código muda, existe risco de efeito colateral. Uma correção em módulo A pode quebrar o módulo B. O teste de regressão é a rede de segurança que detecta esses efeitos colaterais.",
+              "Estratégias: regressão completa (executa toda a suíte — garante máxima cobertura, mas demorado), regressão seletiva (executa apenas os testes relacionados às áreas impactadas pela mudança — mais rápido, requer análise de impacto), regressão priorizada (executa primeiro os testes de maior risco de negócio).",
+              "Automação é essencial para regressão: executar manualmente toda a suíte de regressão a cada deploy é impraticável. Suítes de regressão automatizadas em CI/CD garantem que nenhuma mudança vai para produção sem passar pela validação."
+            ]
+          },
+          {
+            "titulo": "Exemplo e Aplicação",
+            "paragrafos": [
+              "Situação: o time corrigiu um bug no módulo de cálculo de frete. A suíte de regressão automatizada rodou e detectou que a correção, inadvertidamente, quebrou o cálculo de desconto para clientes VIP — um módulo aparentemente não relacionado que compartilhava a mesma função utilitária de arredondamento.",
+              "Sem o teste de regressão, esse bug iria para produção e seria descoberto pelos clientes. Com ele, foi detectado em 3 minutos após o merge e corrigido antes do deploy."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "tipo-fumaca",
+      "ordem": 19,
+      "titulo": "Teste de Fumaça",
+      "contexto": "Tipos de Teste",
+      "atividades": [],
+      "teoria": {
+        "titulo": "Teste de Fumaça (Smoke Test)",
+        "secoes": [
+          {
+            "titulo": "Definição e características",
+            "paragrafos": [
+              "O teste de fumaça (smoke test) é uma verificação rápida e superficial do sistema para garantir que as funcionalidades críticas básicas estão funcionando após um build ou deploy. O nome vem da eletrônica: 'ligue o aparelho e veja se sai fumaça' — se sair, algo está gravemente errado.",
+              "Objetivo: detectar rapidamente se o build está tão quebrado que não vale a pena executar a suíte completa de testes. É um portão de qualidade: se o smoke falha, o build é descartado imediatamente.",
+              "Características: rápido (deve rodar em minutos, não horas), cobre apenas o 'caminho feliz' das funcionalidades mais críticas, automatizado e executado automaticamente após cada deploy.",
+              "Diferença do teste de regressão: regressão é profunda e cobre todos os cenários; smoke é superficial e cobre apenas o essencial para saber se o sistema está 'de pé'."
+            ]
+          },
+          {
+            "titulo": "Exemplo e Aplicação",
+            "paragrafos": [
+              "Smoke test de um sistema bancário: (1) a página principal carrega sem erros? (2) é possível fazer login com credenciais válidas? (3) o saldo da conta é exibido? (4) é possível realizar uma transferência simples? (5) o extrato é exibido?",
+              "Esses 5 cenários rodam em 2 minutos. Se todos passam, o build é aprovado para execução da suíte completa. Se algum falha, o pipeline para imediatamente e o time é notificado — sem gastar mais 40 minutos rodando testes em um sistema que está quebrado nos fundamentos."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "tipo-desempenho",
+      "ordem": 20,
+      "titulo": "Teste de Desempenho",
+      "contexto": "Tipos de Teste",
+      "atividades": [],
+      "teoria": {
+        "titulo": "Teste de Desempenho (Performance Test)",
+        "secoes": [
+          {
+            "titulo": "Definição e características",
+            "paragrafos": [
+              "O teste de desempenho (performance test) é um guarda-chuva que engloba vários tipos de teste com foco em comportamento do sistema sob diferentes condições de carga e uso. A pergunta central: 'o sistema é rápido, estável e escalável o suficiente?'",
+              "Dimensões avaliadas: tempo de resposta (quanto tempo leva para o sistema processar uma requisição?), throughput (quantas requisições por segundo o sistema consegue processar?), utilização de recursos (CPU, memória, rede, disco), escalabilidade (o sistema aguenta crescer?), estabilidade (o sistema se degrada com o tempo?).",
+              "Subtipos: teste de carga (load test), teste de estresse (stress test), teste de spike (pico súbito de usuários), teste de endurance/soak (longa duração para detectar memory leaks).",
+              "Ferramentas: k6, JMeter, Gatling, Locust, Artillery. Métricas acompanhadas: p50, p95, p99 de tempo de resposta (percentis), taxa de erro, throughput."
+            ]
+          },
+          {
+            "titulo": "Exemplo e Aplicação",
+            "paragrafos": [
+              "Meta de desempenho definida: 'O endpoint de busca de produtos deve responder em menos de 500ms para 95% das requisições (p95 < 500ms) com 1.000 usuários simultâneos, com taxa de erro abaixo de 1%.'",
+              "O teste de desempenho simula esses 1.000 usuários e mede se a meta é atingida. Se o p95 for 1.200ms, o time investiga: gargalo no banco de dados? Falta de cache? Query N+1? Os dados orientam onde otimizar."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "tipo-carga",
+      "ordem": 21,
+      "titulo": "Teste de Carga",
+      "contexto": "Tipos de Teste",
+      "atividades": [],
+      "teoria": {
+        "titulo": "Teste de Carga (Load Test)",
+        "secoes": [
+          {
+            "titulo": "Definição e características",
+            "paragrafos": [
+              "O teste de carga (load test) simula o volume esperado de usuários ou transações simultâneas que o sistema deverá suportar em condições normais de uso. Valida se o sistema atende às metas de desempenho dentro da carga de trabalho planejada.",
+              "Diferente do stress test: no load test, a carga está dentro do limite esperado (ex.: 1.000 usuários simultâneos em horário de pico). No stress test, ultrapassamos intencionalmente esse limite para encontrar o ponto de ruptura.",
+              "O que observar: o sistema mantém tempos de resposta aceitáveis? A taxa de erro permanece baixa? Os recursos (CPU, memória) estão dentro de limites saudáveis? O sistema degrada gradualmente ou colapsa?",
+              "Tipos de perfil de carga: rampa gradual (aumenta usuários progressivamente para observar comportamento), carga constante (mantém um número fixo de usuários por tempo prolongado), spike (pico súbito de usuários para testar resiliência)."
+            ]
+          },
+          {
+            "titulo": "Exemplo e Aplicação",
+            "paragrafos": [
+              "Cenário de teste de carga para um sistema de e-commerce na Black Friday: simular 5.000 usuários simultâneos por 30 minutos (carga esperada no pico). O teste usa k6 ou JMeter para gerar esse tráfego e monitora: tempo de resposta médio < 2s, p99 < 5s, taxa de erro < 0,5%.",
+              "Se durante o teste o banco de dados atinge 95% de CPU aos 3.000 usuários, o time identifica o gargalo antes do evento real — e pode escalar a infraestrutura ou otimizar queries a tempo."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "tipo-estresse",
+      "ordem": 22,
+      "titulo": "Teste de Estresse",
+      "contexto": "Tipos de Teste",
+      "atividades": [],
+      "teoria": {
+        "titulo": "Teste de Estresse (Stress Test)",
+        "secoes": [
+          {
+            "titulo": "Definição e características",
+            "paragrafos": [
+              "O teste de estresse (stress test) leva o sistema além dos seus limites normais de carga para identificar o ponto de ruptura — onde e como o sistema falha quando sobrecarregado. A pergunta: 'o sistema falha graciosamente ou colapsa de forma catastrófica?'",
+              "Objetivos: descobrir o limite máximo de usuários/requisições que o sistema suporta, identificar qual componente falha primeiro sob pressão extrema, verificar se o sistema se recupera após o estresse ser removido, verificar se o sistema exibe mensagens de erro adequadas (e não simplesmente trava).",
+              "Graceful degradation: um sistema bem projetado sob estresse deve degradar gradualmente — reduzir funcionalidades não-críticas, exibir mensagens de alta demanda, recusar novas conexões com mensagens claras — em vez de simplesmente travar sem resposta.",
+              "Diferença do soak test: stress test é intenso e curto (encontra o limite); soak/endurance test é moderado e longo (encontra vazamentos de memória e degradação ao longo do tempo)."
+            ]
+          },
+          {
+            "titulo": "Exemplo e Aplicação",
+            "paragrafos": [
+              "O time executa um stress test aumentando a carga gradualmente: 1.000, 2.000, 3.000, 4.000, 5.000 usuários simultâneos. Aos 3.500 usuários, o tempo de resposta ultrapassa 10 segundos e a taxa de erro sobe para 15%. O sistema não trava, mas começa a recusar conexões com HTTP 503. Ao reduzir a carga para 2.000 usuários, o sistema se recupera em 45 segundos.",
+              "Conclusão: o limite saudável é 3.000 usuários. Acima disso, o sistema degrada. A capacidade de recuperação automática é um sinal positivo de resiliência. O time agora sabe onde precisa escalar."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "tipo-manual",
+      "ordem": 23,
+      "titulo": "Teste Manual",
+      "contexto": "Tipos de Teste",
+      "atividades": [],
+      "teoria": {
+        "titulo": "Teste Manual",
+        "secoes": [
+          {
+            "titulo": "Definição e características",
+            "paragrafos": [
+              "O teste manual é executado por uma pessoa, sem o uso de scripts automatizados. O testador interage com o sistema, observa o comportamento e compara com o resultado esperado. É o tipo mais antigo e ainda tem papel importante em cenários específicos.",
+              "Quando ainda faz sentido: testes exploratórios (onde a criatividade humana é o diferencial), testes de usabilidade (avaliar se a interface é intuitiva — algo difícil de automatizar), testes ad-hoc em funcionalidades novas antes de criar a automação, validação de casos de borda muito específicos ou raros.",
+              "Limitações: lento, custoso, sujeito a erro humano, não é repetível com consistência, não escala. Por isso, o manual não deve ser a estratégia principal — mas sim um complemento inteligente aos testes automatizados.",
+              "Roteiro de teste manual: casos de teste bem documentados com pré-condições, passos e resultado esperado. Garante que diferentes testadores executem o mesmo cenário de forma consistente."
+            ]
+          },
+          {
+            "titulo": "Exemplo e Aplicação",
+            "paragrafos": [
+              "Cenário de teste manual para fluxo de cadastro: Pré-condição: usuário não cadastrado. Passos: 1) Acessar /cadastro, 2) preencher nome 'Maria Silva', 3) preencher email 'maria@teste.com', 4) preencher senha 'Teste@2024', 5) clicar em 'Cadastrar'. Resultado esperado: redirecionamento para /dashboard com mensagem 'Bem-vinda, Maria!'",
+              "Além do roteiro formal, um QA experiente vai além: vai testar campos com espaços, caracteres especiais, valores muito longos, clicar duas vezes rápido no botão, tentar cadastrar com o mesmo email duas vezes — comportamentos exploratórios que surgem naturalmente da execução manual."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "tipo-exploratorio",
+      "ordem": 24,
+      "titulo": "Teste Exploratório",
+      "contexto": "Tipos de Teste",
+      "atividades": [],
+      "teoria": {
+        "titulo": "Teste Exploratório",
+        "secoes": [
+          {
+            "titulo": "Definição e características",
+            "paragrafos": [
+              "O teste exploratório é uma abordagem em que o testador aprende sobre o sistema, define os testes e os executa simultaneamente — de forma guiada pela experiência e pela curiosidade, sem seguir um roteiro fixo. É a versão mais inteligente e eficiente do teste manual.",
+              "Não é testar aleatoriamente: o teste exploratório é intencional e sistemático. Usa heurísticas (regras de bolso para encontrar bugs), modelos mentais do sistema e conhecimento de domínio para guiar a exploração. O testador faz perguntas: 'O que acontece se...?', 'E quando o usuário fizer X e Y ao mesmo tempo?'",
+              "Session-based testing: organiza o teste exploratório em sessões com tempo fixo (ex.: 90 minutos) e um charter — um objetivo claro da sessão. Ao final, o testador documenta o que explorou, o que encontrou e o que ficou para explorar depois.",
+              "Complemento indispensável: encontra bugs que testes roteirizados nunca encontrariam — combinações improváveis de ações, comportamentos de borda, problemas de usabilidade e inconsistências."
+            ]
+          },
+          {
+            "titulo": "Exemplo e Aplicação",
+            "paragrafos": [
+              "Charter de exploração: 'Explorar o módulo de relatórios financeiros por 60 minutos, com foco em exportação de dados e comportamento com grandes volumes (mais de 10.000 registros).'",
+              "Durante a sessão: o QA descobre que exportar um relatório com 50.000 registros em CSV trava o browser por 3 minutos sem qualquer feedback de progresso ao usuário. Também descobre que números negativos no relatório são exibidos sem sinal, tornando a leitura ambígua. Ambos os bugs eram invisíveis nos testes automatizados, pois nenhum cenário cobria esses volumes ou esse tipo de dado."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "tecnica-equivalencia",
+      "ordem": 25,
+      "titulo": "Particionamento de Equivalência",
+      "contexto": "Técnicas de Teste",
+      "atividades": [],
+      "teoria": {
+        "titulo": "Particionamento de Equivalência",
+        "secoes": [
+          {
+            "titulo": "Definição e como aplicar",
+            "paragrafos": [
+              "O particionamento de equivalência é uma técnica de design de casos de teste que divide os dados de entrada em grupos (partições) onde todos os membros do grupo são tratados da mesma forma pelo sistema. A premissa: se o sistema se comporta corretamente para um valor de uma partição, provavelmente se comporta corretamente para todos os valores daquela partição.",
+              "Tipos de partição: partições válidas (dados que o sistema deve aceitar e processar corretamente) e partições inválidas (dados que o sistema deve rejeitar com erro adequado). Para cada partição, basta testar um único valor representativo.",
+              "Benefício: reduz drasticamente o número de casos de teste sem perder cobertura significativa. Em vez de testar todos os 1.000 possíveis valores de um campo numérico, você testa um de cada partição.",
+              "Identificação das partições: leia os requisitos e identifique os limites das regras de negócio. Cada faixa definida pelos limites é uma partição."
+            ]
+          },
+          {
+            "titulo": "Exemplo e Aplicação",
+            "paragrafos": [
+              "Campo de idade para cadastro (requisito: aceitar idades entre 18 e 65 anos): Partição inválida 1 — abaixo de 18 (ex.: testar com 17). Partição válida — entre 18 e 65 (ex.: testar com 35). Partição inválida 2 — acima de 65 (ex.: testar com 66). Partição inválida 3 — não-numérico (ex.: testar com 'abc').",
+              "Com particionamento de equivalência, 4 casos de teste cobrem todo o espaço de possibilidades — em vez de testar cada valor de 0 a 100. Um valor por partição é suficiente para representar todo o grupo."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "tecnica-valor-limite",
+      "ordem": 26,
+      "titulo": "Análise de Valor Limite",
+      "contexto": "Técnicas de Teste",
+      "atividades": [],
+      "teoria": {
+        "titulo": "Análise de Valor Limite (Boundary Value Analysis)",
+        "secoes": [
+          {
+            "titulo": "Definição e como aplicar",
+            "paragrafos": [
+              "A análise de valor limite complementa o particionamento de equivalência com um foco específico: os limites entre as partições são onde os bugs mais acontecem. A experiência mostra que desenvolvedores cometem erros frequentes nos limites: >= em vez de >, +1 ou -1 no índice de um array, condições de borda mal implementadas.",
+              "Valores a testar: para cada limite entre partições, testar exatamente o valor do limite, o valor imediatamente abaixo do limite e o valor imediatamente acima do limite. Isso garante que a condição de fronteira está corretamente implementada.",
+              "Regra dos dois pontos (simplificada): alguns times testam apenas o valor exato do limite e o primeiro valor de cada lado. Regra dos três pontos (mais completa): testa min-1, min, min+1 no limite inferior e max-1, max, max+1 no limite superior.",
+              "Combinação: particionamento de equivalência define quais partições existem; análise de valor limite foca nos pontos mais críticos de cada fronteira."
+            ]
+          },
+          {
+            "titulo": "Exemplo e Aplicação",
+            "paragrafos": [
+              "Campo de desconto (requisito: aceitar valores entre 0% e 50%): Valores de limite a testar — limite inferior: -1% (inválido), 0% (válido, mínimo), 1% (válido). Limite superior: 49% (válido), 50% (válido, máximo), 51% (inválido).",
+              "Um bug clássico que esse teste detecta: o dev implementou a condição como 'desconto < 50' em vez de 'desconto <= 50', fazendo com que 50% seja incorretamente rejeitado. O teste com o valor exato do limite (50%) revela o bug que testar apenas '30%' jamais encontraria."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "tecnica-transicao-estados",
+      "ordem": 27,
+      "titulo": "Tabela de Transição de Estados",
+      "contexto": "Técnicas de Teste",
+      "atividades": [],
+      "teoria": {
+        "titulo": "Tabela de Transição de Estados",
+        "secoes": [
+          {
+            "titulo": "Definição e como aplicar",
+            "paragrafos": [
+              "A técnica de transição de estados é usada quando o comportamento do sistema depende do seu estado atual. Modela o sistema como uma máquina de estados: um conjunto de estados possíveis, eventos que disparam transições entre estados e as ações que ocorrem em cada transição.",
+              "Representações: diagrama de estados (visual) e tabela de transição de estados (tabular). A tabela tem linhas para cada estado, colunas para cada evento possível, e células com o próximo estado e/ou ação resultante.",
+              "Cobertura: teste de todos os estados (garante que cada estado foi visitado), teste de todas as transições (garante que cada transição foi executada pelo menos uma vez), teste de sequências de transição (valida fluxos completos).",
+              "Casos inválidos: além das transições válidas, é importante testar eventos que não deveriam ocorrer em determinados estados — ex.: tentar pagar um pedido que já foi cancelado."
+            ]
+          },
+          {
+            "titulo": "Exemplo e Aplicação",
+            "paragrafos": [
+              "Estados de um pedido: Rascunho → Confirmado → Em processamento → Enviado → Entregue (e Cancelado, acessível de Rascunho, Confirmado e Em processamento). Casos de teste: (1) Rascunho + confirmar → Confirmado; (2) Confirmado + cancelar → Cancelado; (3) Enviado + cancelar → deve rejeitar com erro (não é possível cancelar após envio).",
+              "O caso (3) testa uma transição inválida — frequentemente negligenciada em testes funcionais comuns, mas que revela um bug grave se o sistema aceitar cancelamentos após o envio."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "tecnica-tabela-decisao",
+      "ordem": 28,
+      "titulo": "Tabela de Decisão",
+      "contexto": "Técnicas de Teste",
+      "atividades": [],
+      "teoria": {
+        "titulo": "Tabela de Decisão",
+        "secoes": [
+          {
+            "titulo": "Definição e como aplicar",
+            "paragrafos": [
+              "A tabela de decisão é uma técnica para modelar e testar lógica de negócio com múltiplas condições e ações combinadas. É especialmente útil quando o comportamento do sistema depende de combinações de condições booleanas ou categóricas.",
+              "Estrutura: cada coluna representa uma regra (caso de teste), as linhas superiores representam as condições (Sim/Não ou valores específicos) e as linhas inferiores representam as ações (o que o sistema deve fazer). Cada coluna é uma combinação única de condições.",
+              "Cobertura: uma tabela de decisão completa tem 2^N colunas para N condições booleanas. Para N grande, usa-se cobertura selecionada — focando nas combinações mais relevantes e nos casos onde as condições interagem de forma complexa.",
+              "Vantagem: torna explícita a lógica de negócio, facilita revisão com o Product Owner, detecta condições impossíveis ou redundantes na especificação."
+            ]
+          },
+          {
+            "titulo": "Exemplo e Aplicação",
+            "paragrafos": [
+              "Regra de desconto em sistema bancário — condições: Cliente Premium (S/N) e Valor > R$1.000 (S/N). Tabela: (S, S) → Desconto 15%; (S, N) → Desconto 5%; (N, S) → Desconto 3%; (N, N) → Sem desconto.",
+              "Essa tabela gera 4 casos de teste que cobrem todas as combinações possíveis das duas condições. Se a especificação não definir o caso (N, S), o QA identifica a lacuna antes do desenvolvimento e questiona o comportamento esperado — evitando comportamento indefinido no código."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "tecnica-caso-uso",
+      "ordem": 29,
+      "titulo": "Teste de Caso de Uso",
+      "contexto": "Técnicas de Teste",
+      "atividades": [],
+      "teoria": {
+        "titulo": "Teste de Caso de Uso",
+        "secoes": [
+          {
+            "titulo": "Definição e como aplicar",
+            "paragrafos": [
+              "O teste de caso de uso deriva casos de teste diretamente dos casos de uso (use cases) ou histórias de usuário definidos na especificação. Foca em fluxos completos de interação entre o usuário e o sistema — tanto o fluxo principal (caminho feliz) quanto os fluxos alternativos e de exceção.",
+              "Estrutura de um caso de uso: ator (quem interage), pré-condições (estado necessário antes), fluxo principal (passos do caminho feliz), fluxos alternativos (variações válidas), fluxos de exceção (erros e tratamentos), pós-condições (estado após a conclusão).",
+              "Casos de teste derivados: ao menos um caso de teste para o fluxo principal, um caso para cada fluxo alternativo, um caso para cada fluxo de exceção. Garante que todos os caminhos documentados foram testados.",
+              "Alinhamento com o negócio: como os casos de uso são escritos em linguagem de negócio, os casos de teste derivados refletem o que realmente importa para o usuário — não apenas o comportamento técnico."
+            ]
+          },
+          {
+            "titulo": "Exemplo e Aplicação",
+            "paragrafos": [
+              "Caso de uso: 'Realizar saque no caixa eletrônico'. Fluxo principal → cliente insere cartão, digita senha, escolhe valor disponível, recebe o dinheiro. Fluxo alternativo → cliente escolhe valor superior ao disponível: sistema exibe saldo e permite nova escolha. Fluxo de exceção → senha incorreta 3 vezes: cartão bloqueado.",
+              "Casos de teste gerados: (1) saque com saldo suficiente e senha correta; (2) saque com valor maior que saldo; (3) saque com 1 erro de senha seguido de acerto; (4) saque com 3 erros consecutivos de senha. Cada um testa um caminho documentado no caso de uso."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "tecnica-pairwise",
+      "ordem": 30,
+      "titulo": "Teste de Par (Pairwise Testing)",
+      "contexto": "Técnicas de Teste",
+      "atividades": [],
+      "teoria": {
+        "titulo": "Teste de Par (Pairwise Testing)",
+        "secoes": [
+          {
+            "titulo": "Definição e como aplicar",
+            "paragrafos": [
+              "O pairwise testing (ou all-pairs testing) é uma técnica combinatorial que gera o conjunto mínimo de casos de teste necessário para cobrir todas as combinações de pares possíveis entre os parâmetros de entrada. Baseia-se na pesquisa empírica que mostra que a maioria dos bugs é causada pela interação entre dois fatores — não três ou mais.",
+              "Problema que resolve: para N parâmetros com M valores cada, o número de combinações cresce exponencialmente (M^N). Pairwise garante que toda combinação de dois parâmetros é coberta, reduzindo drasticamente o número de casos de teste sem perder cobertura relevante.",
+              "Ferramentas: PICT (Microsoft), allpairs (ferramenta open source), Hexawise. Essas ferramentas recebem os parâmetros e seus valores possíveis e geram automaticamente o conjunto mínimo de casos de teste.",
+              "Aplicação ideal: testes de configuração (combinações de sistema operacional, browser, idioma, resolução), formulários com múltiplos campos interdependentes, APIs com muitos parâmetros opcionais."
+            ]
+          },
+          {
+            "titulo": "Exemplo e Aplicação",
+            "paragrafos": [
+              "Sistema com 3 parâmetros: Sistema Operacional (Windows, macOS, Linux), Browser (Chrome, Firefox, Safari) e Idioma (PT, EN, ES). Combinações totais: 3 x 3 x 3 = 27. Pairwise reduz para 9 casos de teste que cobrem todos os pares possíveis.",
+              "Exemplo dos 9 casos: (Windows, Chrome, PT), (Windows, Firefox, EN), (Windows, Safari, ES), (macOS, Chrome, EN), (macOS, Firefox, ES), (macOS, Safari, PT), (Linux, Chrome, ES), (Linux, Firefox, PT), (Linux, Safari, EN). Toda combinação de dois parâmetros aparece pelo menos uma vez, com apenas 1/3 dos testes da cobertura completa."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "tecnica-experiencia",
+      "ordem": 31,
+      "titulo": "Teste baseado em experiência",
+      "contexto": "Técnicas de Teste",
+      "atividades": [],
+      "teoria": {
+        "titulo": "Teste baseado em experiência",
+        "secoes": [
+          {
+            "titulo": "Definição e abordagens",
+            "paragrafos": [
+              "As técnicas baseadas em experiência utilizam o conhecimento, a intuição e o histórico do testador para identificar casos de teste que técnicas sistemáticas poderiam não cobrir. São especialmente valiosas quando o tempo é limitado ou quando a especificação é vaga.",
+              "Teste exploratório: como vimos anteriormente, o testador aprende, planeja e executa testes simultaneamente. A experiência guia onde focar: áreas de alto risco, funcionalidades complexas, integrações com histórico de problemas. Heurísticas como SFDPOT orientam o que explorar.",
+              "Testes baseados em checklist: o testador usa checklists de qualidade — listas de verificações gerais que se aplicam a praticamente qualquer sistema. Exemplos: 'campos obrigatórios exibem mensagem de erro quando vazios?', 'o sistema funciona com caracteres especiais?', 'o comportamento é consistente em diferentes browsers?'. São baseados em problemas frequentes observados em muitos projetos.",
+              "Testes baseados em histórico (error guessing): o testador usa o conhecimento de bugs anteriores para antecipar onde novos bugs podem estar. Se um módulo tinha problemas com datas no passado, testar datas no limite e formatos variados é uma aposta inteligente. Registro sistemático de bugs e post-mortems alimentam esse conhecimento."
+            ]
+          },
+          {
+            "titulo": "Exemplo e Aplicação",
+            "paragrafos": [
+              "Checklist de campo de texto aplicado ao formulário de cadastro: (1) campo vazio — exibe mensagem de erro? (2) campo com apenas espaços — é validado? (3) 1 caractere — aceita? (4) 255 caracteres — aceita? (5) 256 caracteres — rejeita ou trunca? (6) caracteres especiais (<, >, ', \") — exibidos corretamente ou causam XSS? (7) emojis — sistema suporta UTF-8 completo? (8) colar texto de outro programa — cola corretamente?",
+              "Esse checklist, derivado de bugs vistos em outros projetos, cobre sistematicamente os pontos onde campos de texto costumam falhar — sem precisar de um requisito específico para cada um desses casos."
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}

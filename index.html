@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Trilha de Estudos - Qualidade de Software</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <div class="app">
+      <header class="topbar">
+        <div class="topbar__row">
+          <div class="brand">
+            <span class="brand__icon" aria-hidden="true">◆</span>
+            <h1 class="brand__title">Trilha de Estudos - Qualidade de Software</h1>
+          </div>
+          <div class="topbar__progress">
+            <div class="progress-wrap" aria-live="polite">
+              <span class="progress-wrap__label">Progresso</span>
+              <div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100">
+                <div class="progress-bar__fill" id="progressFill"></div>
+              </div>
+              <span class="progress-wrap__pct" id="progressPct">0%</span>
+            </div>
+            <p class="progress-wrap__storage-hint">dados salvos no navegador, não limpe o cache</p>
+          </div>
+        </div>
+        <div class="context-nav-wrap" id="contextNavWrap">
+          <button
+            type="button"
+            class="context-nav__toggle"
+            id="contextNavToggle"
+            aria-expanded="false"
+            aria-controls="contextNav"
+            aria-label="Abrir ou fechar menu de áreas da trilha"
+          >
+            <span class="context-nav__burger" aria-hidden="true">
+              <span></span><span></span><span></span>
+            </span>
+            <span class="context-nav__toggle-label">Conteúdos</span>
+          </button>
+          <p class="context-nav__active-only" id="contextNavActiveOnly" aria-live="polite"></p>
+          <nav class="context-nav" id="contextNav" aria-label="Áreas da trilha"></nav>
+        </div>
+        <p class="context-nav__intro">
+          O que você quer estudar hoje?
+          <br><span class="context-nav__intro-hint">(selecione um conteúdo no menu)</span>
+        </p>
+      </header>
+
+      <div class="layout">
+        <aside class="sidebar" aria-label="Trilha de tópicos">
+          <div class="sidebar__head">
+            <button
+              type="button"
+              class="sidebar__toggle"
+              id="sidebarToggle"
+              aria-expanded="true"
+              aria-controls="topicList"
+              aria-label="Mostrar ou ocultar lista de tópicos"
+            >
+              <span class="sidebar__toggle-burger" aria-hidden="true">
+                <span></span><span></span><span></span>
+              </span>
+              <span class="sidebar__toggle-label">Tópicos</span>
+            </button>
+            <h2>Tópicos</h2>
+          </div>
+          <nav id="topicList" class="topic-list"></nav>
+        </aside>
+
+        <main class="main" id="mainPanel">
+          <div class="main__inner" id="main__inner">
+            <p class="loading">Carregando trilha…</p>
+          </div>
+        </main>
+
+        <aside class="feedback" aria-label="Informações do conteúdo">
+          <div class="feedback__head">
+            <h2>Quadro de leitura</h2>
+          </div>
+          <div class="feedback__body" id="feedbackPanel">
+            <p class="feedback__hint">Selecione um tópico na lista ao lado para iniciar a leitura.</p>
+          </div>
+        </aside>
+      </div>
+
+      <div class="app-floating-actions" aria-label="Tema e dados salvos">
+        <div class="theme-switch" role="group" aria-label="Alternar tema claro ou escuro">
+          <span class="theme-switch__label" id="themeLabel">Tema escuro</span>
+          <button type="button" class="theme-switch__toggle" id="themeToggle" role="switch" aria-checked="false" aria-labelledby="themeLabel">
+            <span class="theme-switch__thumb" aria-hidden="true"></span>
+          </button>
+        </div>
+        <button type="button" class="app-reset-btn" id="appResetBtn">
+          Resetar progresso
+        </button>
+      </div>
+
+      <footer class="site-footer">
+        <div class="site-footer__intro">
+          <p class="site-footer__credit">
+            Desenvolvido por Caio Andrian · QA Engineer
+            <a
+              class="site-footer__linkedin"
+              href="https://www.linkedin.com/in/caioandrian/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              LinkedIn
+            </a>
+          </p>
+          <button type="button" class="btn btn--ghost site-footer__recommend" data-linkedin-modal="sugestao">
+            Recomendar para amigos
+          </button>
+        </div>
+      </footer>
+    </div>
+
+    <dialog class="share-dialog" id="linkedinShareModal" aria-labelledby="linkedinShareTitle">
+      <div class="share-dialog__panel">
+        <h2 class="share-dialog__title" id="linkedinShareTitle">Texto para o LinkedIn</h2>
+        <p class="share-dialog__hint">
+          Copie o texto abaixo e cole em uma nova publicação no LinkedIn.
+        </p>
+        <label class="share-dialog__label" for="linkedinShareText">Texto da postagem</label>
+        <textarea
+          id="linkedinShareText"
+          class="share-dialog__textarea"
+          readonly
+          rows="14"
+          spellcheck="false"
+        ></textarea>
+        <div class="share-dialog__actions">
+          <button type="button" class="btn btn--primary" id="linkedinShareCopy">Copiar texto</button>
+          <button type="button" class="btn btn--ghost" id="linkedinShareClose">Fechar</button>
+        </div>
+      </div>
+    </dialog>
+
+    <script src="js/app.js" type="module"></script>
+  </body>
+</html>

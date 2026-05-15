@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "trilha-qualidade",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["serve", "-l", "3030", "."],
+      "port": 3030
+    }
+  ]
+}
