@@ -25,6 +25,10 @@
               "Sem QA no processo: o time descobre na produção que o campo de CPF aceita letras, causando falhas em relatórios fiscais. Com QA desde o início: o critério de aceite já previa a validação do formato, o dev implementou a máscara e o teste confirmou o comportamento antes do deploy."
             ]
           }
+        ],
+        "links": [
+          {"titulo": "Is High Quality Software Worth the Cost? — Martin Fowler", "url": "https://martinfowler.com/articles/is-quality-worth-cost.html"},
+          {"titulo": "ISTQB Glossary", "url": "https://glossary.istqb.org/"}
         ]
       }
     },
@@ -54,6 +58,9 @@
               "Reflexão prática: antes de pular testes, pergunte 'qual é o custo se isso falhar em produção?' Se a resposta for alta, o risco justifica o investimento em qualidade."
             ]
           }
+        ],
+        "links": [
+          {"titulo": "Is High Quality Software Worth the Cost? — Martin Fowler", "url": "https://martinfowler.com/articles/is-quality-worth-cost.html"}
         ]
       }
     },
@@ -83,6 +90,10 @@
               "Para o gerenciamento de defeitos, um bug bem descrito seria: 'Ao realizar login com senha contendo caracteres especiais (#, @, !), o sistema retorna erro 500 em vez de autenticar o usuário. Reproduzível em 100% das tentativas. Severidade: Alta. Passos: 1) Acessar /login, 2) Inserir email válido, 3) Inserir senha com @, 4) Clicar em Entrar.'"
             ]
           }
+        ],
+        "links": [
+          {"titulo": "The Practical Test Pyramid — Ham Vocke (martinfowler.com)", "url": "https://martinfowler.com/articles/practical-test-pyramid.html"},
+          {"titulo": "ISTQB Glossary", "url": "https://glossary.istqb.org/"}
         ]
       }
     },
@@ -112,6 +123,10 @@
               "Comparação: se os mesmos 595 cenários fossem todos E2E, o tempo seria de horas — inviável para CI/CD rápido. A pirâmide traz equilíbrio entre confiança e velocidade de feedback."
             ]
           }
+        ],
+        "links": [
+          {"titulo": "Test Pyramid — Martin Fowler", "url": "https://martinfowler.com/bliki/TestPyramid.html"},
+          {"titulo": "The Practical Test Pyramid — Ham Vocke (martinfowler.com)", "url": "https://martinfowler.com/articles/practical-test-pyramid.html"}
         ]
       }
     },
@@ -140,6 +155,10 @@
               "Testes unitários para essa função: (1) preço 100 com 10% de desconto deve retornar 90; (2) desconto de 0% não altera o preço; (3) desconto de 100% retorna 0; (4) preço negativo deve lançar exceção; (5) percentual acima de 100 deve lançar exceção. Cada caso é independente e roda em menos de 1ms — sem banco, sem rede, sem dependências externas."
             ]
           }
+        ],
+        "links": [
+          {"titulo": "Unit Test — Martin Fowler", "url": "https://martinfowler.com/bliki/UnitTest.html"},
+          {"titulo": "The Practical Test Pyramid — Ham Vocke (martinfowler.com)", "url": "https://martinfowler.com/articles/practical-test-pyramid.html"}
         ]
       }
     },
@@ -168,6 +187,10 @@
               "Esse teste detecta problemas reais que testes unitários não veem: erros de mapeamento de campos, problemas de transação, restrições de chave estrangeira, etc."
             ]
           }
+        ],
+        "links": [
+          {"titulo": "Integration Test — Martin Fowler", "url": "https://martinfowler.com/bliki/IntegrationTest.html"},
+          {"titulo": "Testcontainers — Testes de integração com containers reais", "url": "https://testcontainers.com/"}
         ]
       }
     },
@@ -196,6 +219,9 @@
               "Benefício: detecta bugs de lógica interna do serviço, problemas de serialização/desserialização de payloads e comportamento dos endpoints — tudo antes de qualquer integração real com outros sistemas."
             ]
           }
+        ],
+        "links": [
+          {"titulo": "Testing Strategies in a Microservice Architecture — Toby Clemson (martinfowler.com)", "url": "https://martinfowler.com/articles/microservice-testing/"}
         ]
       }
     },
@@ -224,6 +250,9 @@
               "Esse único teste E2E valida que toda a stack — frontend, gateway de API, serviço de catálogo, serviço de carrinho, serviço de pagamento e banco — funcionam integrados para o fluxo mais crítico do negócio."
             ]
           }
+        ],
+        "links": [
+          {"titulo": "The Practical Test Pyramid — Ham Vocke (martinfowler.com)", "url": "https://martinfowler.com/articles/practical-test-pyramid.html"}
         ]
       }
     },
@@ -252,6 +281,9 @@
               "Durante a sessão, o QA descobre que o campo 'nome' aceita scripts JavaScript como <script>alert('XSS')</script>, que são exibidos sem escape na tela de perfil do usuário — um bug crítico de segurança que nenhum teste automatizado havia previsto."
             ]
           }
+        ],
+        "links": [
+          {"titulo": "Ministry of Testing", "url": "https://www.ministryoftesting.com/"}
         ]
       }
     },
@@ -281,6 +313,9 @@
               "Cada teste é independente, roda em menos de 1ms e documenta exatamente o comportamento esperado da função."
             ]
           }
+        ],
+        "links": [
+          {"titulo": "Unit Test — Martin Fowler", "url": "https://martinfowler.com/bliki/UnitTest.html"}
         ]
       }
     },
@@ -309,6 +344,10 @@
               "Esse teste detecta problemas que o unitário não vê: lazy loading não configurado corretamente no ORM, campos com charset errado, restrições de banco não previstas no código."
             ]
           }
+        ],
+        "links": [
+          {"titulo": "Integration Test — Martin Fowler", "url": "https://martinfowler.com/bliki/IntegrationTest.html"},
+          {"titulo": "Testcontainers", "url": "https://testcontainers.com/"}
         ]
       }
     },
@@ -337,6 +376,10 @@
               "O serviço de backend (provedor) executa os testes de contrato: verifica que sua implementação real de GET /api/produtos/:id retorna exatamente esses campos com esses tipos. Se o dev do backend renomear 'preco' para 'valor', o teste de contrato falha antes de qualquer deploy — evitando uma quebra em produção."
             ]
           }
+        ],
+        "links": [
+          {"titulo": "Pact — Contract Testing Framework", "url": "https://docs.pact.io/"},
+          {"titulo": "The Practical Test Pyramid — Ham Vocke (martinfowler.com)", "url": "https://martinfowler.com/articles/practical-test-pyramid.html"}
         ]
       }
     },
@@ -365,6 +408,10 @@
               "Em Postman: cada cenário vira um request com assertions em JavaScript no aba Tests: pm.response.to.have.status(200); pm.expect(pm.response.json().token).to.be.a('string')."
             ]
           }
+        ],
+        "links": [
+          {"titulo": "The Practical Test Pyramid — Ham Vocke (martinfowler.com)", "url": "https://martinfowler.com/articles/practical-test-pyramid.html"},
+          {"titulo": "Postman — Plataforma de testes de API", "url": "https://www.postman.com/"}
         ]
       }
     },
@@ -393,6 +440,9 @@
               "Todos esses cenários são validados com o sistema completo em execução — frontend, backend, banco de dados, integrações externas — em ambiente próximo à produção."
             ]
           }
+        ],
+        "links": [
+          {"titulo": "ISTQB Glossary", "url": "https://glossary.istqb.org/"}
         ]
       }
     },
@@ -421,6 +471,9 @@
               "Esse critério, escrito pelo Product Owner junto com o time, serve como base para o desenvolvimento e é validado pelo usuário final durante o UAT — garantindo que o que foi entregue é realmente o que foi solicitado."
             ]
           }
+        ],
+        "links": [
+          {"titulo": "The Practical Test Pyramid — Ham Vocke (martinfowler.com)", "url": "https://martinfowler.com/articles/practical-test-pyramid.html"}
         ]
       }
     },
@@ -449,6 +502,9 @@
               "Esse teste, que dura cerca de 30 segundos, valida que toda a jornada crítica está funcionando — e é executado automaticamente a cada deploy em staging antes de qualquer release para produção."
             ]
           }
+        ],
+        "links": [
+          {"titulo": "The Practical Test Pyramid — Ham Vocke (martinfowler.com)", "url": "https://martinfowler.com/articles/practical-test-pyramid.html"}
         ]
       }
     },
@@ -477,6 +533,9 @@
               "Cada caso valida uma regra de negócio específica sem olhar para o código — apenas para o comportamento esperado pelo usuário."
             ]
           }
+        ],
+        "links": [
+          {"titulo": "ISTQB Glossary", "url": "https://glossary.istqb.org/"}
         ]
       }
     },
@@ -505,6 +564,9 @@
               "Sem o teste de regressão, esse bug iria para produção e seria descoberto pelos clientes. Com ele, foi detectado em 3 minutos após o merge e corrigido antes do deploy."
             ]
           }
+        ],
+        "links": [
+          {"titulo": "ISTQB Glossary", "url": "https://glossary.istqb.org/"}
         ]
       }
     },
@@ -533,6 +595,9 @@
               "Esses 5 cenários rodam em 2 minutos. Se todos passam, o build é aprovado para execução da suíte completa. Se algum falha, o pipeline para imediatamente e o time é notificado — sem gastar mais 40 minutos rodando testes em um sistema que está quebrado nos fundamentos."
             ]
           }
+        ],
+        "links": [
+          {"titulo": "ISTQB Glossary", "url": "https://glossary.istqb.org/"}
         ]
       }
     },
@@ -561,6 +626,9 @@
               "O teste de desempenho simula esses 1.000 usuários e mede se a meta é atingida. Se o p95 for 1.200ms, o time investiga: gargalo no banco de dados? Falta de cache? Query N+1? Os dados orientam onde otimizar."
             ]
           }
+        ],
+        "links": [
+          {"titulo": "k6 — Performance Testing Docs", "url": "https://k6.io/docs/"}
         ]
       }
     },
@@ -589,6 +657,9 @@
               "Se durante o teste o banco de dados atinge 95% de CPU aos 3.000 usuários, o time identifica o gargalo antes do evento real — e pode escalar a infraestrutura ou otimizar queries a tempo."
             ]
           }
+        ],
+        "links": [
+          {"titulo": "Load Testing — k6 Docs", "url": "https://k6.io/docs/test-types/load-testing/"}
         ]
       }
     },
@@ -617,6 +688,9 @@
               "Conclusão: o limite saudável é 3.000 usuários. Acima disso, o sistema degrada. A capacidade de recuperação automática é um sinal positivo de resiliência. O time agora sabe onde precisa escalar."
             ]
           }
+        ],
+        "links": [
+          {"titulo": "Stress Testing — k6 Docs", "url": "https://k6.io/docs/test-types/stress-testing/"}
         ]
       }
     },
@@ -645,6 +719,9 @@
               "Além do roteiro formal, um QA experiente vai além: vai testar campos com espaços, caracteres especiais, valores muito longos, clicar duas vezes rápido no botão, tentar cadastrar com o mesmo email duas vezes — comportamentos exploratórios que surgem naturalmente da execução manual."
             ]
           }
+        ],
+        "links": [
+          {"titulo": "Ministry of Testing", "url": "https://www.ministryoftesting.com/"}
         ]
       }
     },
@@ -673,6 +750,9 @@
               "Durante a sessão: o QA descobre que exportar um relatório com 50.000 registros em CSV trava o browser por 3 minutos sem qualquer feedback de progresso ao usuário. Também descobre que números negativos no relatório são exibidos sem sinal, tornando a leitura ambígua. Ambos os bugs eram invisíveis nos testes automatizados, pois nenhum cenário cobria esses volumes ou esse tipo de dado."
             ]
           }
+        ],
+        "links": [
+          {"titulo": "Ministry of Testing", "url": "https://www.ministryoftesting.com/"}
         ]
       }
     },
@@ -701,6 +781,9 @@
               "Com particionamento de equivalência, 4 casos de teste cobrem todo o espaço de possibilidades — em vez de testar cada valor de 0 a 100. Um valor por partição é suficiente para representar todo o grupo."
             ]
           }
+        ],
+        "links": [
+          {"titulo": "Equivalence Partitioning — ISTQB Glossary", "url": "https://glossary.istqb.org/"}
         ]
       }
     },
@@ -729,6 +812,9 @@
               "Um bug clássico que esse teste detecta: o dev implementou a condição como 'desconto < 50' em vez de 'desconto <= 50', fazendo com que 50% seja incorretamente rejeitado. O teste com o valor exato do limite (50%) revela o bug que testar apenas '30%' jamais encontraria."
             ]
           }
+        ],
+        "links": [
+          {"titulo": "Boundary Value Analysis — ISTQB Glossary", "url": "https://glossary.istqb.org/"}
         ]
       }
     },
@@ -757,6 +843,9 @@
               "O caso (3) testa uma transição inválida — frequentemente negligenciada em testes funcionais comuns, mas que revela um bug grave se o sistema aceitar cancelamentos após o envio."
             ]
           }
+        ],
+        "links": [
+          {"titulo": "State Transition Testing — ISTQB Glossary", "url": "https://glossary.istqb.org/"}
         ]
       }
     },
@@ -785,6 +874,9 @@
               "Essa tabela gera 4 casos de teste que cobrem todas as combinações possíveis das duas condições. Se a especificação não definir o caso (N, S), o QA identifica a lacuna antes do desenvolvimento e questiona o comportamento esperado — evitando comportamento indefinido no código."
             ]
           }
+        ],
+        "links": [
+          {"titulo": "Decision Table Testing — ISTQB Glossary", "url": "https://glossary.istqb.org/"}
         ]
       }
     },
@@ -813,6 +905,9 @@
               "Casos de teste gerados: (1) saque com saldo suficiente e senha correta; (2) saque com valor maior que saldo; (3) saque com 1 erro de senha seguido de acerto; (4) saque com 3 erros consecutivos de senha. Cada um testa um caminho documentado no caso de uso."
             ]
           }
+        ],
+        "links": [
+          {"titulo": "Use Case Testing — ISTQB Glossary", "url": "https://glossary.istqb.org/"}
         ]
       }
     },
@@ -841,6 +936,10 @@
               "Exemplo dos 9 casos: (Windows, Chrome, PT), (Windows, Firefox, EN), (Windows, Safari, ES), (macOS, Chrome, EN), (macOS, Firefox, ES), (macOS, Safari, PT), (Linux, Chrome, ES), (Linux, Firefox, PT), (Linux, Safari, EN). Toda combinação de dois parâmetros aparece pelo menos uma vez, com apenas 1/3 dos testes da cobertura completa."
             ]
           }
+        ],
+        "links": [
+          {"titulo": "All-pairs Testing — Wikipedia", "url": "https://en.wikipedia.org/wiki/All-pairs_testing"},
+          {"titulo": "Pairwise.org", "url": "https://www.pairwise.org/"}
         ]
       }
     },
@@ -869,6 +968,10 @@
               "Esse checklist, derivado de bugs vistos em outros projetos, cobre sistematicamente os pontos onde campos de texto costumam falhar — sem precisar de um requisito específico para cada um desses casos."
             ]
           }
+        ],
+        "links": [
+          {"titulo": "Ministry of Testing", "url": "https://www.ministryoftesting.com/"},
+          {"titulo": "ISTQB Glossary", "url": "https://glossary.istqb.org/"}
         ]
       }
     }
