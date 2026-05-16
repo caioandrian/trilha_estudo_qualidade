@@ -19,7 +19,7 @@
             ]
           },
           {
-            "titulo": "Exemplo e Aplicação",
+            "titulo": "Exemplo",
             "paragrafos": [
               "Em um time ágil trabalhando com sprints de 2 semanas, o QA participa desde o início: durante o planejamento, questiona ambiguidades nos requisitos ('E se o usuário deixar o campo vazio?'). Durante o desenvolvimento, alinha com o dev os critérios de aceite. Ao final, executa os testes e garante que as histórias estejam realmente prontas para ir à produção.",
               "Sem QA no processo: o time descobre na produção que o campo de CPF aceita letras, causando falhas em relatórios fiscais. Com QA desde o início: o critério de aceite já previa a validação do formato, o dev implementou a máscara e o teste confirmou o comportamento antes do deploy."
@@ -52,7 +52,7 @@
             ]
           },
           {
-            "titulo": "Exemplo e Aplicação",
+            "titulo": "Exemplo",
             "paragrafos": [
               "Situação real: uma startup decidiu não testar a funcionalidade de pagamento para 'economizar tempo'. O sistema foi ao ar e, no primeiro dia, 23% das transações falhavam silenciosamente — sem retorno ao usuário. O custo de rollback, comunicação de crise e retrabalho foi 8 vezes maior do que o tempo que seria gasto nos testes.",
               "Reflexão prática: antes de pular testes, pergunte 'qual é o custo se isso falhar em produção?' Se a resposta for alta, o risco justifica o investimento em qualidade."
@@ -84,7 +84,7 @@
             ]
           },
           {
-            "titulo": "Exemplo e Aplicação",
+            "titulo": "Exemplo",
             "paragrafos": [
               "Um time define no DoD da sprint: 'Todos os critérios de aceite cobertos por testes automatizados; zero bugs de severidade alta abertos; PR aprovado por outro dev e pelo QA.' Resultado: histórias não passam de sprint para sprint incompletas, e a definição de 'pronto' é compartilhada por todos.",
               "Para o gerenciamento de defeitos, um bug bem descrito seria: 'Ao realizar login com senha contendo caracteres especiais (#, @, !), o sistema retorna erro 500 em vez de autenticar o usuário. Reproduzível em 100% das tentativas. Severidade: Alta. Passos: 1) Acessar /login, 2) Inserir email válido, 3) Inserir senha com @, 4) Clicar em Entrar.'"
@@ -117,7 +117,7 @@
             ]
           },
           {
-            "titulo": "Exemplo e Aplicação",
+            "titulo": "Exemplo",
             "paragrafos": [
               "Um e-commerce saudável pode ter: 500 testes unitários (rodam em 30 segundos), 80 testes de integração de API (rodam em 3 minutos) e 15 testes E2E cobrindo os fluxos críticos: login, busca, carrinho e checkout (rodam em 10 minutos). Total: feedback completo em menos de 15 minutos.",
               "Comparação: se os mesmos 595 cenários fossem todos E2E, o tempo seria de horas — inviável para CI/CD rápido. A pirâmide traz equilíbrio entre confiança e velocidade de feedback."
@@ -149,7 +149,7 @@
             ]
           },
           {
-            "titulo": "Exemplo e Aplicação",
+            "titulo": "Exemplo",
             "paragrafos": [
               "Função a ser testada: calcularDesconto(preco, percentual) que retorna o preço com desconto aplicado.",
               "Testes unitários para essa função: (1) preço 100 com 10% de desconto deve retornar 90; (2) desconto de 0% não altera o preço; (3) desconto de 100% retorna 0; (4) preço negativo deve lançar exceção; (5) percentual acima de 100 deve lançar exceção. Cada caso é independente e roda em menos de 1ms — sem banco, sem rede, sem dependências externas."
@@ -181,7 +181,7 @@
             ]
           },
           {
-            "titulo": "Exemplo e Aplicação",
+            "titulo": "Exemplo",
             "paragrafos": [
               "Cenário: o serviço de pedidos deve salvar um novo pedido no banco e retornar o ID gerado. O teste de integração: (1) sobe um banco PostgreSQL real via Testcontainers, (2) cria as tabelas necessárias, (3) chama o método pedidoRepository.salvar(novoPedido), (4) consulta o banco diretamente e verifica que o registro foi persistido com os dados corretos, (5) destrói o container ao final.",
               "Esse teste detecta problemas reais que testes unitários não veem: erros de mapeamento de campos, problemas de transação, restrições de chave estrangeira, etc."
@@ -213,7 +213,7 @@
             ]
           },
           {
-            "titulo": "Exemplo e Aplicação",
+            "titulo": "Exemplo",
             "paragrafos": [
               "Microsserviço de autenticação: o teste de componente sobe apenas esse serviço com banco em memória, e usa WireMock para simular o serviço de usuários externo. Então chama o endpoint POST /auth/login com credenciais válidas e verifica que retorna um token JWT válido — sem precisar que o serviço de usuários real esteja rodando.",
               "Benefício: detecta bugs de lógica interna do serviço, problemas de serialização/desserialização de payloads e comportamento dos endpoints — tudo antes de qualquer integração real com outros sistemas."
@@ -244,7 +244,7 @@
             ]
           },
           {
-            "titulo": "Exemplo e Aplicação",
+            "titulo": "Exemplo",
             "paragrafos": [
               "Fluxo E2E crítico de um e-commerce: (1) usuário acessa o site, (2) pesquisa por 'tênis running', (3) seleciona um produto, (4) adiciona ao carrinho, (5) insere dados de entrega, (6) realiza pagamento com cartão teste, (7) verifica a página de confirmação com número do pedido.",
               "Esse único teste E2E valida que toda a stack — frontend, gateway de API, serviço de catálogo, serviço de carrinho, serviço de pagamento e banco — funcionam integrados para o fluxo mais crítico do negócio."
@@ -275,7 +275,7 @@
             ]
           },
           {
-            "titulo": "Exemplo e Aplicação",
+            "titulo": "Exemplo",
             "paragrafos": [
               "Charter de exploração: 'Explorar o formulário de cadastro por 45 minutos, com foco em comportamento inesperado de campos de texto (caracteres especiais, emojis, textos muito longos, HTML injetado, SQL injection básico).'",
               "Durante a sessão, o QA descobre que o campo 'nome' aceita scripts JavaScript como <script>alert('XSS')</script>, que são exibidos sem escape na tela de perfil do usuário — um bug crítico de segurança que nenhum teste automatizado havia previsto."
@@ -306,7 +306,7 @@
             ]
           },
           {
-            "titulo": "Exemplo e Aplicação",
+            "titulo": "Exemplo",
             "paragrafos": [
               "Testando uma função de validação de CPF em Python com pytest:",
               "def test_cpf_valido_retorna_true(): assert validar_cpf('529.982.247-25') == True\ndef test_cpf_invalido_retorna_false(): assert validar_cpf('111.111.111-11') == False\ndef test_cpf_vazio_lanca_excecao(): with pytest.raises(ValueError): validar_cpf('')",
@@ -338,7 +338,7 @@
             ]
           },
           {
-            "titulo": "Exemplo e Aplicação",
+            "titulo": "Exemplo",
             "paragrafos": [
               "Cenário de integração entre serviço de pedidos e banco de dados: o teste cria um pedido via a camada de serviço, verifica que foi persistido corretamente no banco (inclusive relacionamentos com itens e endereços), e em seguida consulta o banco diretamente para confirmar a integridade dos dados.",
               "Esse teste detecta problemas que o unitário não vê: lazy loading não configurado corretamente no ORM, campos com charset errado, restrições de banco não previstas no código."
@@ -370,7 +370,7 @@
             ]
           },
           {
-            "titulo": "Exemplo e Aplicação",
+            "titulo": "Exemplo",
             "paragrafos": [
               "O serviço de frontend (consumidor) espera que GET /api/produtos/:id retorne um JSON com os campos: id (número), nome (string), preco (número), disponivel (boolean). O contrato Pact define essa expectativa.",
               "O serviço de backend (provedor) executa os testes de contrato: verifica que sua implementação real de GET /api/produtos/:id retorna exatamente esses campos com esses tipos. Se o dev do backend renomear 'preco' para 'valor', o teste de contrato falha antes de qualquer deploy — evitando uma quebra em produção."
@@ -402,7 +402,7 @@
             ]
           },
           {
-            "titulo": "Exemplo e Aplicação",
+            "titulo": "Exemplo",
             "paragrafos": [
               "Teste de API para POST /auth/login: cenário de sucesso — enviar email e senha válidos, verificar que retorna 200, que o body contém 'token' (string) e 'expiresIn' (número). Cenário de falha — senha incorreta deve retornar 401 com mensagem de erro específica. Cenário de validação — email com formato inválido deve retornar 400.",
               "Em Postman: cada cenário vira um request com assertions em JavaScript no aba Tests: pm.response.to.have.status(200); pm.expect(pm.response.json().token).to.be.a('string')."
@@ -434,7 +434,7 @@
             ]
           },
           {
-            "titulo": "Exemplo e Aplicação",
+            "titulo": "Exemplo",
             "paragrafos": [
               "Para um sistema de gestão hospitalar, os testes de sistema incluem: (funcional) o médico consegue registrar uma consulta com todos os campos obrigatórios? O prontuário do paciente é atualizado automaticamente? (não-funcional) o sistema suporta 500 usuários simultâneos? Os dados do paciente são criptografados em repouso e em trânsito?",
               "Todos esses cenários são validados com o sistema completo em execução — frontend, backend, banco de dados, integrações externas — em ambiente próximo à produção."
@@ -465,7 +465,7 @@
             ]
           },
           {
-            "titulo": "Exemplo e Aplicação",
+            "titulo": "Exemplo",
             "paragrafos": [
               "Critério de aceite em Gherkin: 'Dado que sou um cliente com conta ativa, Quando realizo um saque de R$200 com saldo de R$500, Então meu saldo deve ser atualizado para R$300 e devo receber uma notificação por SMS.'",
               "Esse critério, escrito pelo Product Owner junto com o time, serve como base para o desenvolvimento e é validado pelo usuário final durante o UAT — garantindo que o que foi entregue é realmente o que foi solicitado."
@@ -496,7 +496,7 @@
             ]
           },
           {
-            "titulo": "Exemplo e Aplicação",
+            "titulo": "Exemplo",
             "paragrafos": [
               "Teste E2E com Playwright para fluxo de login e compra: o teste abre o browser, navega até a página de login, preenche credenciais, aguarda o redirecionamento para o dashboard, busca por um produto, adiciona ao carrinho, preenche dados de entrega, seleciona forma de pagamento, finaliza a compra e verifica o número do pedido na tela de confirmação.",
               "Esse teste, que dura cerca de 30 segundos, valida que toda a jornada crítica está funcionando — e é executado automaticamente a cada deploy em staging antes de qualquer release para produção."
@@ -527,7 +527,7 @@
             ]
           },
           {
-            "titulo": "Exemplo e Aplicação",
+            "titulo": "Exemplo",
             "paragrafos": [
               "Requisito funcional: 'O sistema deve aplicar desconto de 10% em compras acima de R$100 e de 15% em compras acima de R$200.' Casos de teste funcionais: (1) compra de R$50 — sem desconto; (2) compra de R$100 — sem desconto (limite exato); (3) compra de R$101 — desconto de 10%; (4) compra de R$200 — 10%; (5) compra de R$201 — 15%.",
               "Cada caso valida uma regra de negócio específica sem olhar para o código — apenas para o comportamento esperado pelo usuário."
@@ -558,7 +558,7 @@
             ]
           },
           {
-            "titulo": "Exemplo e Aplicação",
+            "titulo": "Exemplo",
             "paragrafos": [
               "Situação: o time corrigiu um bug no módulo de cálculo de frete. A suíte de regressão automatizada rodou e detectou que a correção, inadvertidamente, quebrou o cálculo de desconto para clientes VIP — um módulo aparentemente não relacionado que compartilhava a mesma função utilitária de arredondamento.",
               "Sem o teste de regressão, esse bug iria para produção e seria descoberto pelos clientes. Com ele, foi detectado em 3 minutos após o merge e corrigido antes do deploy."
@@ -589,7 +589,7 @@
             ]
           },
           {
-            "titulo": "Exemplo e Aplicação",
+            "titulo": "Exemplo",
             "paragrafos": [
               "Smoke test de um sistema bancário: (1) a página principal carrega sem erros? (2) é possível fazer login com credenciais válidas? (3) o saldo da conta é exibido? (4) é possível realizar uma transferência simples? (5) o extrato é exibido?",
               "Esses 5 cenários rodam em 2 minutos. Se todos passam, o build é aprovado para execução da suíte completa. Se algum falha, o pipeline para imediatamente e o time é notificado — sem gastar mais 40 minutos rodando testes em um sistema que está quebrado nos fundamentos."
@@ -620,7 +620,7 @@
             ]
           },
           {
-            "titulo": "Exemplo e Aplicação",
+            "titulo": "Exemplo",
             "paragrafos": [
               "Meta de desempenho definida: 'O endpoint de busca de produtos deve responder em menos de 500ms para 95% das requisições (p95 < 500ms) com 1.000 usuários simultâneos, com taxa de erro abaixo de 1%.'",
               "O teste de desempenho simula esses 1.000 usuários e mede se a meta é atingida. Se o p95 for 1.200ms, o time investiga: gargalo no banco de dados? Falta de cache? Query N+1? Os dados orientam onde otimizar."
@@ -651,7 +651,7 @@
             ]
           },
           {
-            "titulo": "Exemplo e Aplicação",
+            "titulo": "Exemplo",
             "paragrafos": [
               "Cenário de teste de carga para um sistema de e-commerce na Black Friday: simular 5.000 usuários simultâneos por 30 minutos (carga esperada no pico). O teste usa k6 ou JMeter para gerar esse tráfego e monitora: tempo de resposta médio < 2s, p99 < 5s, taxa de erro < 0,5%.",
               "Se durante o teste o banco de dados atinge 95% de CPU aos 3.000 usuários, o time identifica o gargalo antes do evento real — e pode escalar a infraestrutura ou otimizar queries a tempo."
@@ -682,7 +682,7 @@
             ]
           },
           {
-            "titulo": "Exemplo e Aplicação",
+            "titulo": "Exemplo",
             "paragrafos": [
               "O time executa um stress test aumentando a carga gradualmente: 1.000, 2.000, 3.000, 4.000, 5.000 usuários simultâneos. Aos 3.500 usuários, o tempo de resposta ultrapassa 10 segundos e a taxa de erro sobe para 15%. O sistema não trava, mas começa a recusar conexões com HTTP 503. Ao reduzir a carga para 2.000 usuários, o sistema se recupera em 45 segundos.",
               "Conclusão: o limite saudável é 3.000 usuários. Acima disso, o sistema degrada. A capacidade de recuperação automática é um sinal positivo de resiliência. O time agora sabe onde precisa escalar."
@@ -713,7 +713,7 @@
             ]
           },
           {
-            "titulo": "Exemplo e Aplicação",
+            "titulo": "Exemplo",
             "paragrafos": [
               "Cenário de teste manual para fluxo de cadastro: Pré-condição: usuário não cadastrado. Passos: 1) Acessar /cadastro, 2) preencher nome 'Maria Silva', 3) preencher email 'maria@teste.com', 4) preencher senha 'Teste@2024', 5) clicar em 'Cadastrar'. Resultado esperado: redirecionamento para /dashboard com mensagem 'Bem-vinda, Maria!'",
               "Além do roteiro formal, um QA experiente vai além: vai testar campos com espaços, caracteres especiais, valores muito longos, clicar duas vezes rápido no botão, tentar cadastrar com o mesmo email duas vezes — comportamentos exploratórios que surgem naturalmente da execução manual."
@@ -744,7 +744,7 @@
             ]
           },
           {
-            "titulo": "Exemplo e Aplicação",
+            "titulo": "Exemplo",
             "paragrafos": [
               "Charter de exploração: 'Explorar o módulo de relatórios financeiros por 60 minutos, com foco em exportação de dados e comportamento com grandes volumes (mais de 10.000 registros).'",
               "Durante a sessão: o QA descobre que exportar um relatório com 50.000 registros em CSV trava o browser por 3 minutos sem qualquer feedback de progresso ao usuário. Também descobre que números negativos no relatório são exibidos sem sinal, tornando a leitura ambígua. Ambos os bugs eram invisíveis nos testes automatizados, pois nenhum cenário cobria esses volumes ou esse tipo de dado."
@@ -766,7 +766,7 @@
         "titulo": "Particionamento de Equivalência",
         "secoes": [
           {
-            "titulo": "Definição e como aplicar",
+            "titulo": "Definição",
             "paragrafos": [
               "O particionamento de equivalência é uma técnica de design de casos de teste que divide os dados de entrada em grupos (partições) onde todos os membros do grupo são tratados da mesma forma pelo sistema. A premissa: se o sistema se comporta corretamente para um valor de uma partição, provavelmente se comporta corretamente para todos os valores daquela partição.",
               "Tipos de partição: partições válidas (dados que o sistema deve aceitar e processar corretamente) e partições inválidas (dados que o sistema deve rejeitar com erro adequado). Para cada partição, basta testar um único valor representativo.",
@@ -775,11 +775,13 @@
             ]
           },
           {
-            "titulo": "Exemplo e Aplicação",
+            "titulo": "Exemplo",
             "paragrafos": [
               "Campo de idade para cadastro (requisito: aceitar idades entre 18 e 65 anos): Partição inválida 1 — abaixo de 18 (ex.: testar com 17). Partição válida — entre 18 e 65 (ex.: testar com 35). Partição inválida 2 — acima de 65 (ex.: testar com 66). Partição inválida 3 — não-numérico (ex.: testar com 'abc').",
               "Com particionamento de equivalência, 4 casos de teste cobrem todo o espaço de possibilidades — em vez de testar cada valor de 0 a 100. Um valor por partição é suficiente para representar todo o grupo."
-            ]
+            ],
+            "imagem": "imagens/particionamento-equivalencia.png",
+            "imagemAlt": "Diagrama de particionamento de equivalência"
           }
         ],
         "links": [
@@ -797,7 +799,7 @@
         "titulo": "Análise de Valor Limite (Boundary Value Analysis)",
         "secoes": [
           {
-            "titulo": "Definição e como aplicar",
+            "titulo": "Definição",
             "paragrafos": [
               "A análise de valor limite complementa o particionamento de equivalência com um foco específico: os limites entre as partições são onde os bugs mais acontecem. A experiência mostra que desenvolvedores cometem erros frequentes nos limites: >= em vez de >, +1 ou -1 no índice de um array, condições de borda mal implementadas.",
               "Valores a testar: para cada limite entre partições, testar exatamente o valor do limite, o valor imediatamente abaixo do limite e o valor imediatamente acima do limite. Isso garante que a condição de fronteira está corretamente implementada.",
@@ -806,11 +808,13 @@
             ]
           },
           {
-            "titulo": "Exemplo e Aplicação",
+            "titulo": "Exemplo",
             "paragrafos": [
               "Campo de desconto (requisito: aceitar valores entre 0% e 50%): Valores de limite a testar — limite inferior: -1% (inválido), 0% (válido, mínimo), 1% (válido). Limite superior: 49% (válido), 50% (válido, máximo), 51% (inválido).",
               "Um bug clássico que esse teste detecta: o dev implementou a condição como 'desconto < 50' em vez de 'desconto <= 50', fazendo com que 50% seja incorretamente rejeitado. O teste com o valor exato do limite (50%) revela o bug que testar apenas '30%' jamais encontraria."
-            ]
+            ],
+            "imagem": "imagens/analise-valor-limite.png",
+            "imagemAlt": "Diagrama de análise de valor limite"
           }
         ],
         "links": [
@@ -828,7 +832,7 @@
         "titulo": "Tabela de Transição de Estados",
         "secoes": [
           {
-            "titulo": "Definição e como aplicar",
+            "titulo": "Definição",
             "paragrafos": [
               "A técnica de transição de estados é usada quando o comportamento do sistema depende do seu estado atual. Modela o sistema como uma máquina de estados: um conjunto de estados possíveis, eventos que disparam transições entre estados e as ações que ocorrem em cada transição.",
               "Representações: diagrama de estados (visual) e tabela de transição de estados (tabular). A tabela tem linhas para cada estado, colunas para cada evento possível, e células com o próximo estado e/ou ação resultante.",
@@ -837,11 +841,13 @@
             ]
           },
           {
-            "titulo": "Exemplo e Aplicação",
+            "titulo": "Exemplo",
             "paragrafos": [
               "Estados de um pedido: Rascunho → Confirmado → Em processamento → Enviado → Entregue (e Cancelado, acessível de Rascunho, Confirmado e Em processamento). Casos de teste: (1) Rascunho + confirmar → Confirmado; (2) Confirmado + cancelar → Cancelado; (3) Enviado + cancelar → deve rejeitar com erro (não é possível cancelar após envio).",
               "O caso (3) testa uma transição inválida — frequentemente negligenciada em testes funcionais comuns, mas que revela um bug grave se o sistema aceitar cancelamentos após o envio."
-            ]
+            ],
+            "imagem": "imagens/tabela-transicao-estados.png",
+            "imagemAlt": "Tabela de transição de estados"
           }
         ],
         "links": [
@@ -859,7 +865,7 @@
         "titulo": "Tabela de Decisão",
         "secoes": [
           {
-            "titulo": "Definição e como aplicar",
+            "titulo": "Definição",
             "paragrafos": [
               "A tabela de decisão é uma técnica para modelar e testar lógica de negócio com múltiplas condições e ações combinadas. É especialmente útil quando o comportamento do sistema depende de combinações de condições booleanas ou categóricas.",
               "Estrutura: cada coluna representa uma regra (caso de teste), as linhas superiores representam as condições (Sim/Não ou valores específicos) e as linhas inferiores representam as ações (o que o sistema deve fazer). Cada coluna é uma combinação única de condições.",
@@ -868,11 +874,13 @@
             ]
           },
           {
-            "titulo": "Exemplo e Aplicação",
+            "titulo": "Exemplo",
             "paragrafos": [
               "Regra de desconto em sistema bancário — condições: Cliente Premium (S/N) e Valor > R$1.000 (S/N). Tabela: (S, S) → Desconto 15%; (S, N) → Desconto 5%; (N, S) → Desconto 3%; (N, N) → Sem desconto.",
               "Essa tabela gera 4 casos de teste que cobrem todas as combinações possíveis das duas condições. Se a especificação não definir o caso (N, S), o QA identifica a lacuna antes do desenvolvimento e questiona o comportamento esperado — evitando comportamento indefinido no código."
-            ]
+            ],
+            "imagem": "imagens/tabela-decisao.png",
+            "imagemAlt": "Tabela de decisão"
           }
         ],
         "links": [
@@ -890,7 +898,7 @@
         "titulo": "Teste de Caso de Uso",
         "secoes": [
           {
-            "titulo": "Definição e como aplicar",
+            "titulo": "Definição",
             "paragrafos": [
               "O teste de caso de uso deriva casos de teste diretamente dos casos de uso (use cases) ou histórias de usuário definidos na especificação. Foca em fluxos completos de interação entre o usuário e o sistema — tanto o fluxo principal (caminho feliz) quanto os fluxos alternativos e de exceção.",
               "Estrutura de um caso de uso: ator (quem interage), pré-condições (estado necessário antes), fluxo principal (passos do caminho feliz), fluxos alternativos (variações válidas), fluxos de exceção (erros e tratamentos), pós-condições (estado após a conclusão).",
@@ -899,7 +907,7 @@
             ]
           },
           {
-            "titulo": "Exemplo e Aplicação",
+            "titulo": "Exemplo",
             "paragrafos": [
               "Caso de uso: 'Realizar saque no caixa eletrônico'. Fluxo principal → cliente insere cartão, digita senha, escolhe valor disponível, recebe o dinheiro. Fluxo alternativo → cliente escolhe valor superior ao disponível: sistema exibe saldo e permite nova escolha. Fluxo de exceção → senha incorreta 3 vezes: cartão bloqueado.",
               "Casos de teste gerados: (1) saque com saldo suficiente e senha correta; (2) saque com valor maior que saldo; (3) saque com 1 erro de senha seguido de acerto; (4) saque com 3 erros consecutivos de senha. Cada um testa um caminho documentado no caso de uso."
@@ -921,7 +929,7 @@
         "titulo": "Teste de Par (Pairwise Testing)",
         "secoes": [
           {
-            "titulo": "Definição e como aplicar",
+            "titulo": "Definição",
             "paragrafos": [
               "O pairwise testing (ou all-pairs testing) é uma técnica combinatorial que gera o conjunto mínimo de casos de teste necessário para cobrir todas as combinações de pares possíveis entre os parâmetros de entrada. Baseia-se na pesquisa empírica que mostra que a maioria dos bugs é causada pela interação entre dois fatores — não três ou mais.",
               "Problema que resolve: para N parâmetros com M valores cada, o número de combinações cresce exponencialmente (M^N). Pairwise garante que toda combinação de dois parâmetros é coberta, reduzindo drasticamente o número de casos de teste sem perder cobertura relevante.",
@@ -930,7 +938,7 @@
             ]
           },
           {
-            "titulo": "Exemplo e Aplicação",
+            "titulo": "Exemplo",
             "paragrafos": [
               "Sistema com 3 parâmetros: Sistema Operacional (Windows, macOS, Linux), Browser (Chrome, Firefox, Safari) e Idioma (PT, EN, ES). Combinações totais: 3 x 3 x 3 = 27. Pairwise reduz para 9 casos de teste que cobrem todos os pares possíveis.",
               "Exemplo dos 9 casos: (Windows, Chrome, PT), (Windows, Firefox, EN), (Windows, Safari, ES), (macOS, Chrome, EN), (macOS, Firefox, ES), (macOS, Safari, PT), (Linux, Chrome, ES), (Linux, Firefox, PT), (Linux, Safari, EN). Toda combinação de dois parâmetros aparece pelo menos uma vez, com apenas 1/3 dos testes da cobertura completa."
@@ -962,7 +970,7 @@
             ]
           },
           {
-            "titulo": "Exemplo e Aplicação",
+            "titulo": "Exemplo",
             "paragrafos": [
               "Checklist de campo de texto aplicado ao formulário de cadastro: (1) campo vazio — exibe mensagem de erro? (2) campo com apenas espaços — é validado? (3) 1 caractere — aceita? (4) 255 caracteres — aceita? (5) 256 caracteres — rejeita ou trunca? (6) caracteres especiais (<, >, ', \") — exibidos corretamente ou causam XSS? (7) emojis — sistema suporta UTF-8 completo? (8) colar texto de outro programa — cola corretamente?",
               "Esse checklist, derivado de bugs vistos em outros projetos, cobre sistematicamente os pontos onde campos de texto costumam falhar — sem precisar de um requisito específico para cada um desses casos."

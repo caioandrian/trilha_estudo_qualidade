@@ -1461,6 +1461,101 @@ html[data-theme="light"] .share-dialog::backdrop {
   justify-content: flex-end;
 }
 
+/* ── Theory figure (image with lightbox) ─────────────────────────────── */
+
+.theory-figure {
+  margin: 1.25rem 0 0;
+  padding: 0;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  background: var(--surface-2);
+}
+
+.theory-figure__img {
+  display: block;
+  width: 100%;
+  height: auto;
+  cursor: zoom-in;
+  transition: opacity 0.15s ease;
+}
+
+.theory-figure__img:hover {
+  opacity: 0.88;
+}
+
+.theory-figure__caption {
+  display: block;
+  padding: 0.35rem 0.75rem;
+  font-size: 0.75rem;
+  color: var(--muted);
+  text-align: center;
+  border-top: 1px solid var(--border);
+}
+
+/* ── Lightbox dialog ────────────────────────────────────────────────── */
+
+.lightbox-dialog {
+  padding: 0;
+  border: none;
+  background: transparent;
+  max-width: 94vw;
+  max-height: 94vh;
+  overflow: visible;
+}
+
+.lightbox-dialog::backdrop {
+  background: rgba(0, 0, 0, 0.82);
+  backdrop-filter: blur(4px);
+}
+
+html[data-theme="light"] .lightbox-dialog::backdrop {
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.lightbox-dialog__panel {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lightbox-dialog__img {
+  display: block;
+  max-width: 90vw;
+  max-height: 88vh;
+  width: auto;
+  height: auto;
+  border-radius: var(--radius-sm);
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.6);
+}
+
+.lightbox-dialog__close {
+  position: absolute;
+  top: -1rem;
+  right: -1rem;
+  width: 2rem;
+  height: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+  font-size: 0.9rem;
+  line-height: 1;
+  cursor: pointer;
+  z-index: 1;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.lightbox-dialog__close:hover {
+  background: var(--danger);
+  color: #fff;
+  border-color: var(--danger);
+}
+
 .activity-card {
   background: transparent;
   border: 1px solid var(--border);

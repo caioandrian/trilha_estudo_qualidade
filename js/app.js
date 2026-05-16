@@ -374,7 +374,18 @@ function buildSingleTheorySectionHtml(sec) {
     .map((p) => `<p>${escapeHtml(p)}</p>`)
     .join("");
   const body = paras ? `<div class="theory-body">${paras}</div>` : "";
-  return `<section class="theory-section">${titulo}${body}${theoryCodeSectionFromSec(sec)}</section>`;
+  const imgHtml = sec.imagem
+    ? `<figure class="theory-figure">
+        <img
+          class="theory-figure__img"
+          src="${escapeHtml(sec.imagem)}"
+          alt="${escapeHtml(sec.imagemAlt || sec.titulo || "Imagem")}"
+          loading="lazy"
+        />
+        <figcaption class="theory-figure__caption">Clique na imagem para ampliar</figcaption>
+      </figure>`
+    : "";
+  return `<section class="theory-section">${titulo}${body}${theoryCodeSectionFromSec(sec)}${imgHtml}</section>`;
 }
 
 /** @param {Teoria} teoria */
@@ -601,6 +612,25 @@ function renderTheoryAlreadyRead(topico, ctx) {
   });
 }
 
+function initImageLightbox() {
+  const dialog = document.getElementById("imageLightbox");
+  const img = document.getElementById("imageLightboxImg");
+  const closeBtn = document.getElementById("imageLightboxClose");
+  if (!dialog || !img || !closeBtn) return;
+
+  document.addEventListener("click", (e) => {
+    const target = e.target;
+    if (!(target instanceof HTMLImageElement)) return;
+    if (!target.classList.contains("theory-figure__img")) return;
+    img.src = target.src;
+    img.alt = target.alt;
+    /** @type {HTMLDialogElement} */ (dialog).showModal();
+  });
+
+  closeBtn.addEventListener("click", () => { /** @type {HTMLDialogElement} */ (dialog).close(); });
+  dialog.addEventListener("click", (e) => { if (e.target === dialog) /** @type {HTMLDialogElement} */ (dialog).close(); });
+}
+
 function initLinkedinShareModal() {
   const dialog = document.getElementById("linkedinShareModal");
   const textarea = document.getElementById("linkedinShareText");
@@ -698,6 +728,7 @@ function initAppReset() {
 async function main() {
   initTheme();
   initAppReset();
+  initImageLightbox();
   initLinkedinShareModal();
   wireContextNavMobileToggle();
 
