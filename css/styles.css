@@ -961,6 +961,7 @@ html[data-theme="light"] .theory-badge {
 
 .theory-subnav {
   margin: 0 0 1rem;
+  scroll-margin-top: var(--topbar-offset, 7.5rem);
 }
 
 .theory-subnav__inner {

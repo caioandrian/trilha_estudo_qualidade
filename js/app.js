@@ -288,6 +288,14 @@ function scrollAnchorTheorySubpanel() {
   });
 }
 
+function scrollAnchorTheorySubnav() {
+  requestAnimationFrame(() => {
+    const el = document.getElementById("theory-subnav");
+    if (!el) return;
+    el.scrollIntoView({ behavior: "smooth", block: "start" });
+  });
+}
+
 function scrollAnchorFeedbackPanel() {
   requestAnimationFrame(() => {
     const el = document.getElementById("feedbackPanel");
@@ -497,7 +505,7 @@ function renderTheory(topico, ctx) {
       .join("");
     const firstPane = buildSingleTheorySectionHtml(secoesFiltered[0]);
     theoryMainHtml = `
-    <nav class="theory-subnav" aria-label="Partes do conteúdo">
+    <nav class="theory-subnav" id="theory-subnav" aria-label="Partes do conteúdo">
       <div class="theory-subnav__inner" role="tablist">${navButtons}</div>
     </nav>
     <div class="theory-subpanel" id="theorySubpanel" role="tabpanel" tabindex="0" aria-labelledby="theoryTab0">
@@ -580,7 +588,8 @@ function renderTheory(topico, ctx) {
     }
 
     ctx.paint();
-    if (isMobileStudyLayout()) scrollAnchorMainInner();
+    ctx.enterMobileSidebarTopicActiveMode();
+    scrollAnchorMainPanel();
   });
 }
 
@@ -875,6 +884,7 @@ async function main() {
       onSelectTopic,
       onSelectContexto,
       setFocusTopicId: (id) => { focusTopicId = id; },
+      enterMobileSidebarTopicActiveMode,
       paint,
     };
 
