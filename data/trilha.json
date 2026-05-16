@@ -186,6 +186,13 @@
               "Cenário: o serviço de pedidos deve salvar um novo pedido no banco e retornar o ID gerado. O teste de integração: (1) sobe um banco PostgreSQL real via Testcontainers, (2) cria as tabelas necessárias, (3) chama o método pedidoRepository.salvar(novoPedido), (4) consulta o banco diretamente e verifica que o registro foi persistido com os dados corretos, (5) destrói o container ao final.",
               "Esse teste detecta problemas reais que testes unitários não veem: erros de mapeamento de campos, problemas de transação, restrições de chave estrangeira, etc."
             ]
+          },
+          {
+            "titulo": "Técnicas Recomendadas",
+            "paragrafos": [
+              "Particionamento de Equivalência: aplique para os dados trocados entre os componentes integrados. A especificação deve definir quais payloads e formatos são aceitos na comunicação e quais devem ser rejeitados — por exemplo: 'o serviço de pedidos aceita apenas produtos com status ativo no catálogo; produtos inativos devem retornar erro'.",
+              "Tabela de Transição de Estados: use quando a integração envolve componentes com estados — como filas de mensagens, eventos assíncronos ou workflows. A especificação deve listar todos os estados possíveis do objeto integrado e os eventos que disparam cada transição — por exemplo: 'o evento pedido.confirmado transita o estoque de disponível para reservado'."
+            ]
           }
         ],
         "links": [
@@ -312,6 +319,14 @@
               "def test_cpf_valido_retorna_true(): assert validar_cpf('529.982.247-25') == True\ndef test_cpf_invalido_retorna_false(): assert validar_cpf('111.111.111-11') == False\ndef test_cpf_vazio_lanca_excecao(): with pytest.raises(ValueError): validar_cpf('')",
               "Cada teste é independente, roda em menos de 1ms e documenta exatamente o comportamento esperado da função."
             ]
+          },
+          {
+            "titulo": "Técnicas Recomendadas",
+            "paragrafos": [
+              "Particionamento de Equivalência: aplique para os parâmetros de entrada da função ou método testado. A especificação deve descrever quais valores cada parâmetro aceita (partição válida) e quais deve rejeitar (partição inválida) — por exemplo: 'a função de desconto aceita percentuais inteiros de 0 a 100 e deve lançar exceção para valores negativos ou acima de 100'.",
+              "Análise de Valor Limite: combine com o particionamento para os limites numéricos dos parâmetros. A especificação deve apresentar os valores mínimo e máximo exatos aceitos por cada parâmetro — por exemplo: 'a senha deve ter entre 8 e 20 caracteres', permitindo testar 7, 8, 9, 19, 20 e 21 caracteres.",
+              "Tabela de Decisão: use quando a unidade tiver lógica condicional com duas ou mais condições independentes que, combinadas, determinam resultados diferentes — por exemplo: 'se o cliente é premium E o valor é acima de R$1.000, aplica desconto de 15%'. A especificação deve apresentar todas as combinações de condições e o resultado esperado para cada uma."
+            ]
           }
         ],
         "links": [
@@ -375,6 +390,13 @@
               "O serviço de frontend (consumidor) espera que GET /api/produtos/:id retorne um JSON com os campos: id (número), nome (string), preco (número), disponivel (boolean). O contrato Pact define essa expectativa.",
               "O serviço de backend (provedor) executa os testes de contrato: verifica que sua implementação real de GET /api/produtos/:id retorna exatamente esses campos com esses tipos. Se o dev do backend renomear 'preco' para 'valor', o teste de contrato falha antes de qualquer deploy — evitando uma quebra em produção."
             ]
+          },
+          {
+            "titulo": "Técnicas Recomendadas",
+            "paragrafos": [
+              "Particionamento de Equivalência: para validar o contrato entre consumidor e provedor, identifique payloads válidos (campos obrigatórios presentes e com tipos corretos) e inválidos (campo ausente, tipo incorreto, valor não permitido). O contrato deve especificar para cada campo: se é obrigatório, seu tipo de dado e os valores permitidos.",
+              "Análise de Valor Limite: aplique quando o contrato define campos com limites numéricos — como paginação, tamanhos de arrays ou valores monetários. O contrato deve especificar os valores mínimo e máximo aceitos para cada campo numérico — por exemplo: 'o parâmetro page aceita valores inteiros de 1 a 1000'."
+            ]
           }
         ],
         "links": [
@@ -406,6 +428,15 @@
             "paragrafos": [
               "Teste de API para POST /auth/login: cenário de sucesso — enviar email e senha válidos, verificar que retorna 200, que o body contém 'token' (string) e 'expiresIn' (número). Cenário de falha — senha incorreta deve retornar 401 com mensagem de erro específica. Cenário de validação — email com formato inválido deve retornar 400.",
               "Em Postman: cada cenário vira um request com assertions em JavaScript no aba Tests: pm.response.to.have.status(200); pm.expect(pm.response.json().token).to.be.a('string')."
+            ]
+          },
+          {
+            "titulo": "Técnicas Recomendadas",
+            "paragrafos": [
+              "Particionamento de Equivalência: para cada campo ou parâmetro da API, identifique as partições válidas e inválidas. A especificação deve descrever quais valores cada campo aceita e rejeita — por exemplo: 'o campo status aceita apenas ativo, inativo e pendente; qualquer outro valor deve retornar HTTP 400'.",
+              "Análise de Valor Limite: para campos numéricos ou de tamanho. A especificação deve informar os valores mínimo e máximo exatos de cada campo — por exemplo: 'o campo quantidade aceita valores inteiros de 1 a 999', permitindo testar 0, 1, 2, 998, 999 e 1000.",
+              "Tabela de Decisão: use quando a combinação de duas ou mais condições independentes determina a resposta da API — por exemplo: 'se o usuário está autenticado E tem perfil admin, retorna os dados completos; caso contrário, retorna apenas os dados públicos'. A especificação deve mapear todas as combinações possíveis e o resultado esperado (status HTTP e corpo da resposta) para cada uma.",
+              "Pairwise Testing: use quando a API possui múltiplos parâmetros opcionais cujas combinações podem gerar comportamentos distintos. A especificação deve listar todos os parâmetros e seus valores possíveis, permitindo que a ferramenta de pairwise gere o conjunto mínimo de combinações a testar."
             ]
           }
         ],
@@ -439,6 +470,15 @@
               "Para um sistema de gestão hospitalar, os testes de sistema incluem: (funcional) o médico consegue registrar uma consulta com todos os campos obrigatórios? O prontuário do paciente é atualizado automaticamente? (não-funcional) o sistema suporta 500 usuários simultâneos? Os dados do paciente são criptografados em repouso e em trânsito?",
               "Todos esses cenários são validados com o sistema completo em execução — frontend, backend, banco de dados, integrações externas — em ambiente próximo à produção."
             ]
+          },
+          {
+            "titulo": "Técnicas Recomendadas",
+            "paragrafos": [
+              "Caso de Uso: derive os casos de teste diretamente dos casos de uso ou histórias de usuário documentados. A especificação deve apresentar para cada funcionalidade: o ator, as pré-condições, o fluxo principal (caminho feliz), os fluxos alternativos e os fluxos de exceção — garantindo ao menos um caso de teste por fluxo.",
+              "Tabela de Decisão: para regras de negócio com duas ou mais condições independentes. A especificação deve mapear todas as combinações possíveis e a ação do sistema para cada combinação — por exemplo: 'se o pedido é acima de R$500 E o cliente tem cadastro ativo, libera parcelamento em até 12x'.",
+              "Tabela de Transição de Estados: para entidades com ciclo de vida bem definido — pedidos, aprovações, publicações. A especificação deve listar todos os estados possíveis, os eventos que disparam cada transição, as ações resultantes e as transições inválidas.",
+              "Particionamento de Equivalência e Análise de Valor Limite: para campos de entrada e regras com faixas numéricas. A especificação deve definir os valores aceitos e rejeitados para cada campo e apresentar os limites mínimo e máximo de cada faixa — por exemplo: 'campo de avaliação aceita notas inteiras de 1 a 5'."
+            ]
           }
         ],
         "links": [
@@ -469,6 +509,12 @@
             "paragrafos": [
               "Critério de aceite em Gherkin: 'Dado que sou um cliente com conta ativa, Quando realizo um saque de R$200 com saldo de R$500, Então meu saldo deve ser atualizado para R$300 e devo receber uma notificação por SMS.'",
               "Esse critério, escrito pelo Product Owner junto com o time, serve como base para o desenvolvimento e é validado pelo usuário final durante o UAT — garantindo que o que foi entregue é realmente o que foi solicitado."
+            ]
+          },
+          {
+            "titulo": "Técnicas Recomendadas",
+            "paragrafos": [
+              "Caso de Uso: é a técnica central do teste de aceitação. Os critérios de aceite devem ser escritos como casos de uso ou no formato Given/When/Then (BDD), descrevendo: o ator, a pré-condição, a ação realizada e o resultado esperado — incluindo o fluxo principal e os fluxos de exceção. Derive ao menos um caso de teste por fluxo documentado."
             ]
           }
         ],
@@ -501,6 +547,13 @@
               "Teste E2E com Playwright para fluxo de login e compra: o teste abre o browser, navega até a página de login, preenche credenciais, aguarda o redirecionamento para o dashboard, busca por um produto, adiciona ao carrinho, preenche dados de entrega, seleciona forma de pagamento, finaliza a compra e verifica o número do pedido na tela de confirmação.",
               "Esse teste, que dura cerca de 30 segundos, valida que toda a jornada crítica está funcionando — e é executado automaticamente a cada deploy em staging antes de qualquer release para produção."
             ]
+          },
+          {
+            "titulo": "Técnicas Recomendadas",
+            "paragrafos": [
+              "Caso de Uso: os testes E2E são derivados das jornadas completas do usuário. A especificação deve descrever cada jornada de ponta a ponta: o ator, as pré-condições iniciais, cada interação com o sistema e o resultado final esperado — permitindo derivar um caso de teste E2E por fluxo documentado.",
+              "Pairwise Testing: use quando os testes E2E precisam cobrir múltiplas combinações de ambiente — browsers, sistemas operacionais, dispositivos ou idiomas. A especificação deve listar os ambientes suportados e seus valores possíveis, de modo que a ferramenta de pairwise gere o conjunto mínimo de combinações necessárias."
+            ]
           }
         ],
         "links": [
@@ -531,6 +584,16 @@
             "paragrafos": [
               "Requisito funcional: 'O sistema deve aplicar desconto de 10% em compras acima de R$100 e de 15% em compras acima de R$200.' Casos de teste funcionais: (1) compra de R$50 — sem desconto; (2) compra de R$100 — sem desconto (limite exato); (3) compra de R$101 — desconto de 10%; (4) compra de R$200 — 10%; (5) compra de R$201 — 15%.",
               "Cada caso valida uma regra de negócio específica sem olhar para o código — apenas para o comportamento esperado pelo usuário."
+            ]
+          },
+          {
+            "titulo": "Técnicas Recomendadas",
+            "paragrafos": [
+              "Particionamento de Equivalência: para cada campo ou regra de negócio, identifique as classes de dados que o sistema trata de forma idêntica. A especificação deve descrever quais valores são aceitos e quais são rejeitados — por exemplo: 'o campo de percentual aceita valores de 0 a 100 e deve rejeitar valores negativos ou acima de 100'.",
+              "Análise de Valor Limite: aplique nos limites das partições, onde os erros de implementação são mais frequentes. A especificação deve apresentar os valores mínimo e máximo exatos de cada faixa — por exemplo: 'tamanho da senha: mínimo 8, máximo 20 caracteres', permitindo testar 7, 8, 9, 19, 20 e 21.",
+              "Tabela de Decisão: para regras com duas ou mais condições independentes. A especificação deve mapear todas as combinações de condições e o resultado esperado — por exemplo: 'se o usuário é maior de 18 anos E apresentou documento válido, libera o cadastro completo'.",
+              "Tabela de Transição de Estados: para funcionalidades com ciclo de vida definido. A especificação deve descrever todos os estados possíveis da entidade, os eventos que disparam cada transição e as transições inválidas.",
+              "Caso de Uso: para funcionalidades descritas como fluxos de interação do usuário com o sistema. A especificação deve apresentar o fluxo principal e os fluxos alternativos e de exceção de cada funcionalidade."
             ]
           }
         ],
@@ -563,6 +626,12 @@
               "Situação: o time corrigiu um bug no módulo de cálculo de frete. A suíte de regressão automatizada rodou e detectou que a correção, inadvertidamente, quebrou o cálculo de desconto para clientes VIP — um módulo aparentemente não relacionado que compartilhava a mesma função utilitária de arredondamento.",
               "Sem o teste de regressão, esse bug iria para produção e seria descoberto pelos clientes. Com ele, foi detectado em 3 minutos após o merge e corrigido antes do deploy."
             ]
+          },
+          {
+            "titulo": "Técnicas Recomendadas",
+            "paragrafos": [
+              "Teste baseado em experiência: o principal orientador da seleção de casos de regressão é o histórico de defeitos do projeto. O registro de bugs deve documentar a área do sistema afetada, a causa raiz e os passos para reprodução — esses dados definem os candidatos prioritários para a suíte de regressão. Bugs recorrentes em uma mesma área indicam instabilidade e devem receber cobertura permanente."
+            ]
           }
         ],
         "links": [
@@ -593,6 +662,12 @@
             "paragrafos": [
               "Smoke test de um sistema bancário: (1) a página principal carrega sem erros? (2) é possível fazer login com credenciais válidas? (3) o saldo da conta é exibido? (4) é possível realizar uma transferência simples? (5) o extrato é exibido?",
               "Esses 5 cenários rodam em 2 minutos. Se todos passam, o build é aprovado para execução da suíte completa. Se algum falha, o pipeline para imediatamente e o time é notificado — sem gastar mais 40 minutos rodando testes em um sistema que está quebrado nos fundamentos."
+            ]
+          },
+          {
+            "titulo": "Técnicas Recomendadas",
+            "paragrafos": [
+              "Caso de Uso: os cenários de fumaça são derivados do fluxo principal (caminho feliz) dos casos de uso mais críticos do sistema. A especificação deve identificar quais funcionalidades são essenciais para que o sistema esteja operacional — geralmente: autenticação, a operação principal do negócio e encerramento de sessão. Para cada funcionalidade crítica, o fluxo principal documentado torna-se um candidato direto ao teste de fumaça."
             ]
           }
         ],
@@ -625,6 +700,12 @@
               "Meta de desempenho definida: 'O endpoint de busca de produtos deve responder em menos de 500ms para 95% das requisições (p95 < 500ms) com 1.000 usuários simultâneos, com taxa de erro abaixo de 1%.'",
               "O teste de desempenho simula esses 1.000 usuários e mede se a meta é atingida. Se o p95 for 1.200ms, o time investiga: gargalo no banco de dados? Falta de cache? Query N+1? Os dados orientam onde otimizar."
             ]
+          },
+          {
+            "titulo": "Técnicas Recomendadas",
+            "paragrafos": [
+              "Nenhuma das técnicas de design de casos de teste desta trilha se aplica diretamente ao teste de desempenho. Este tipo de teste é orientado por metas mensuráveis (tempo de resposta, throughput, taxa de erro) e perfis de carga definidos com base em dados reais de uso — o que requer ferramentas e abordagens próprias, como k6, JMeter ou Gatling."
+            ]
           }
         ],
         "links": [
@@ -655,6 +736,12 @@
             "paragrafos": [
               "Cenário de teste de carga para um sistema de e-commerce na Black Friday: simular 5.000 usuários simultâneos por 30 minutos (carga esperada no pico). O teste usa k6 ou JMeter para gerar esse tráfego e monitora: tempo de resposta médio < 2s, p99 < 5s, taxa de erro < 0,5%.",
               "Se durante o teste o banco de dados atinge 95% de CPU aos 3.000 usuários, o time identifica o gargalo antes do evento real — e pode escalar a infraestrutura ou otimizar queries a tempo."
+            ]
+          },
+          {
+            "titulo": "Técnicas Recomendadas",
+            "paragrafos": [
+              "Nenhuma das técnicas de design de casos de teste desta trilha se aplica diretamente ao teste de carga. O design deste tipo de teste é orientado por volumes de usuários simultâneos e perfis de rampa definidos a partir de dados históricos de tráfego e metas de capacidade — o que requer ferramentas específicas como k6, JMeter ou Gatling."
             ]
           }
         ],
@@ -687,6 +774,12 @@
               "O time executa um stress test aumentando a carga gradualmente: 1.000, 2.000, 3.000, 4.000, 5.000 usuários simultâneos. Aos 3.500 usuários, o tempo de resposta ultrapassa 10 segundos e a taxa de erro sobe para 15%. O sistema não trava, mas começa a recusar conexões com HTTP 503. Ao reduzir a carga para 2.000 usuários, o sistema se recupera em 45 segundos.",
               "Conclusão: o limite saudável é 3.000 usuários. Acima disso, o sistema degrada. A capacidade de recuperação automática é um sinal positivo de resiliência. O time agora sabe onde precisa escalar."
             ]
+          },
+          {
+            "titulo": "Técnicas Recomendadas",
+            "paragrafos": [
+              "Nenhuma das técnicas de design de casos de teste desta trilha se aplica diretamente ao teste de estresse. O design deste tipo de teste é orientado pelo incremento progressivo de carga além dos limites esperados, com observação do ponto de ruptura e comportamento de degradação — o que requer ferramentas específicas como k6, JMeter ou Gatling."
+            ]
           }
         ],
         "links": [
@@ -718,6 +811,13 @@
               "Cenário de teste manual para fluxo de cadastro: Pré-condição: usuário não cadastrado. Passos: 1) Acessar /cadastro, 2) preencher nome 'Maria Silva', 3) preencher email 'maria@teste.com', 4) preencher senha 'Teste@2024', 5) clicar em 'Cadastrar'. Resultado esperado: redirecionamento para /dashboard com mensagem 'Bem-vinda, Maria!'",
               "Além do roteiro formal, um QA experiente vai além: vai testar campos com espaços, caracteres especiais, valores muito longos, clicar duas vezes rápido no botão, tentar cadastrar com o mesmo email duas vezes — comportamentos exploratórios que surgem naturalmente da execução manual."
             ]
+          },
+          {
+            "titulo": "Técnicas Recomendadas",
+            "paragrafos": [
+              "Particionamento de Equivalência: para organizar o roteiro de teste manual de forma eficiente, representando cada partição com um único valor. A especificação deve definir quais classes de dados são válidas e inválidas para cada campo ou funcionalidade testada.",
+              "Teste baseado em experiência: o testador manual usa checklists de qualidade e error guessing para ir além do roteiro formal. O histórico de defeitos do projeto e os checklists acumulados em projetos anteriores devem estar disponíveis como referência durante a execução dos testes."
+            ]
           }
         ],
         "links": [
@@ -748,6 +848,12 @@
             "paragrafos": [
               "Charter de exploração: 'Explorar o módulo de relatórios financeiros por 60 minutos, com foco em exportação de dados e comportamento com grandes volumes (mais de 10.000 registros).'",
               "Durante a sessão: o QA descobre que exportar um relatório com 50.000 registros em CSV trava o browser por 3 minutos sem qualquer feedback de progresso ao usuário. Também descobre que números negativos no relatório são exibidos sem sinal, tornando a leitura ambígua. Ambos os bugs eram invisíveis nos testes automatizados, pois nenhum cenário cobria esses volumes ou esse tipo de dado."
+            ]
+          },
+          {
+            "titulo": "Técnicas Recomendadas",
+            "paragrafos": [
+              "Teste baseado em experiência: é a técnica central do teste exploratório. O charter da sessão deve definir o foco da exploração com base em: áreas de maior risco do sistema, histórico de bugs nas últimas releases e heurísticas de qualidade (como SFDPOT — Structure, Function, Data, Platform, Operations, Time). O resultado da sessão deve documentar o que foi explorado, os bugs encontrados e as áreas que merecem aprofundamento."
             ]
           }
         ],
