@@ -1475,8 +1475,10 @@ html[data-theme="light"] .share-dialog::backdrop {
 
 .theory-figure__img {
   display: block;
-  width: 100%;
-  height: auto;
+  max-height: 250px;
+  width: auto;
+  max-width: 100%;
+  margin: 0 auto;
   cursor: zoom-in;
   transition: opacity 0.15s ease;
 }
